@@ -5,1794 +5,1761 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About Aperture AIoT | Transforming Data into Intelligence</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <style>
 :root {
   --q-about-primary: #0a0f1e;
-  --q-about-secondary: #101832;
   --q-about-accent: #3b82f6;
-  --q-about-accent-2: #06b6d4;
-  --q-about-accent-3: #8b5cf6;
-  --q-about-gradient: linear-gradient(135deg, #3b82f6 0%, #06b6d4 50%, #8b5cf6 100%);
-  --q-about-gradient-subtle: linear-gradient(135deg, rgba(59,130,246,0.08) 0%, rgba(6,182,212,0.08) 50%, rgba(139,92,246,0.08) 100%);
+  --q-about-accent-light: #60a5fa;
+  --q-about-accent-glow: rgba(59, 130, 246, 0.15);
+  --q-about-surface: #111827;
+  --q-about-surface-alt: #1a2234;
+  --q-about-border: rgba(255, 255, 255, 0.06);
   --q-about-text: #e2e8f0;
   --q-about-text-muted: #94a3b8;
-  --q-about-text-heading: #f1f5f9;
-  --q-about-border: rgba(255,255,255,0.06);
-  --q-about-card-bg: rgba(16,24,50,0.6);
-  --q-about-glass: rgba(255,255,255,0.03);
-  --q-about-radius: 16px;
-  --q-about-radius-sm: 10px;
-  --q-about-transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  --q-about-font: 'Inter', -apple-system, sans-serif;
-  --q-about-font-display: 'Space Grotesk', 'Inter', sans-serif;
+  --q-about-white: #ffffff;
+  --q-about-gradient-1: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  --q-about-gradient-2: linear-gradient(135deg, #0a0f1e 0%, #1a2234 100%);
 }
 
-.q-about-page {
-  font-family: var(--q-about-font);
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   background: var(--q-about-primary);
   color: var(--q-about-text);
   line-height: 1.7;
   overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
 }
 
-.q-about-page *,
-.q-about-page *::before,
-.q-about-page *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-/* Container */
-.q-about-container {
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 0 24px;
+/* ── NAV ── */
+.q-about-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
+  z-index: 1000;
+  padding: 1rem 0;
+  transition: background 0.35s ease, box-shadow 0.35s ease, padding 0.35s ease;
 }
 
-.q-about-container--narrow {
-  max-width: 880px;
+.q-about-nav.is-scrolled {
+  background: rgba(10, 15, 30, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 1px 0 var(--q-about-border);
+  padding: 0.65rem 0;
 }
 
-.q-about-container--wide {
-  max-width: 1400px;
+.q-about-nav-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-/* Section Base */
-.q-about-section {
-  padding: 120px 0;
+.q-about-logo {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--q-about-white);
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.q-about-logo span {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--q-about-accent);
+  border-radius: 50%;
+  margin-left: 2px;
+  vertical-align: super;
+  font-size: 0;
+}
+
+.q-about-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.q-about-nav-links a {
+  color: var(--q-about-text-muted);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color 0.25s ease;
   position: relative;
 }
 
-.q-about-section--sm {
-  padding: 80px 0;
+.q-about-nav-links a:hover,
+.q-about-nav-links a.is-active {
+  color: var(--q-about-white);
 }
 
-/* ===== HERO SECTION ===== */
+.q-about-nav-links a.is-active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--q-about-accent);
+  border-radius: 1px;
+}
+
+.q-about-nav-cta {
+  background: var(--q-about-gradient-1) !important;
+  color: var(--q-about-white) !important;
+  padding: 0.55rem 1.5rem !important;
+  border-radius: 8px;
+  font-weight: 600 !important;
+  font-size: 0.825rem !important;
+  transition: opacity 0.25s ease, transform 0.25s ease !important;
+}
+
+.q-about-nav-cta:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.q-about-mobile-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+
+.q-about-mobile-toggle span {
+  width: 22px;
+  height: 2px;
+  background: var(--q-about-white);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* ── HERO ── */
 .q-about-hero {
-  min-height: 100vh;
+  position: relative;
+  min-height: 85vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  padding: 140px 0 120px;
+  text-align: center;
+  padding: 10rem 2rem 6rem;
   overflow: hidden;
 }
 
-.q-about-hero__bg {
+.q-about-hero-bg {
   position: absolute;
   inset: 0;
-  z-index: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 60%),
+              radial-gradient(ellipse 60% 50% at 80% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
 }
 
-.q-about-hero__bg::before {
-  content: '';
-  position: absolute;
-  top: -40%;
-  right: -20%;
-  width: 800px;
-  height: 800px;
-  background: radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 70%);
-  border-radius: 50%;
-  animation: q-about-pulse 8s ease-in-out infinite;
-}
-
-.q-about-hero__bg::after {
-  content: '';
-  position: absolute;
-  bottom: -30%;
-  left: -15%;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(139,92,246,0.1) 0%, transparent 70%);
-  border-radius: 50%;
-  animation: q-about-pulse 10s ease-in-out infinite reverse;
-}
-
-.q-about-hero__grid-pattern {
+.q-about-hero-grid {
   position: absolute;
   inset: 0;
   background-image:
     linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
   background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
-  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 70%);
 }
 
-.q-about-hero__content {
+.q-about-hero-content {
   position: relative;
+  max-width: 820px;
   z-index: 2;
-  text-align: center;
-  max-width: 900px;
-  margin: 0 auto;
 }
 
-.q-about-hero__badge {
+.q-about-hero-badge {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 20px;
-  background: var(--q-about-glass);
-  border: 1px solid var(--q-about-border);
+  gap: 0.5rem;
+  padding: 0.4rem 1.2rem;
   border-radius: 100px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--q-about-accent-2);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 32px;
-  backdrop-filter: blur(10px);
+  background: var(--q-about-accent-glow);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  color: var(--q-about-accent-light);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-bottom: 2rem;
 }
 
-.q-about-hero__badge-dot {
-  width: 6px;
-  height: 6px;
-  background: var(--q-about-accent-2);
-  border-radius: 50%;
-  animation: q-about-blink 2s ease-in-out infinite;
+.q-about-hero-badge svg {
+  width: 14px;
+  height: 14px;
 }
 
-.q-about-hero__title {
-  font-family: var(--q-about-font-display);
-  font-size: clamp(42px, 6vw, 76px);
-  font-weight: 700;
-  line-height: 1.08;
-  color: var(--q-about-text-heading);
-  margin-bottom: 28px;
+.q-about-hero h1 {
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 800;
+  color: var(--q-about-white);
+  line-height: 1.15;
   letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
 }
 
-.q-about-hero__title-accent {
-  background: var(--q-about-gradient);
+.q-about-hero h1 .q-about-gradient-text {
+  background: var(--q-about-gradient-1);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.q-about-hero__subtitle {
-  font-size: clamp(17px, 2vw, 20px);
+.q-about-hero-sub {
+  font-size: 1.1rem;
   color: var(--q-about-text-muted);
-  max-width: 680px;
-  margin: 0 auto 44px;
-  line-height: 1.7;
-  font-weight: 400;
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.8;
 }
 
-.q-about-hero__cta {
+.q-about-hero-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.q-about-btn-primary {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 16px 36px;
-  background: var(--q-about-gradient);
-  color: #fff;
-  font-size: 15px;
-  font-weight: 600;
-  border-radius: 100px;
-  text-decoration: none;
-  transition: var(--q-about-transition);
+  gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  background: var(--q-about-gradient-1);
+  color: var(--q-about-white);
   border: none;
+  border-radius: 10px;
+  font-size: 0.925rem;
+  font-weight: 600;
   cursor: pointer;
-  letter-spacing: 0.01em;
+  text-decoration: none;
+  transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.q-about-hero__cta:hover {
+.q-about-btn-primary:hover {
+  opacity: 0.92;
   transform: translateY(-2px);
-  box-shadow: 0 20px 40px rgba(59,130,246,0.25);
+  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.25);
 }
 
-.q-about-hero__cta svg {
-  width: 18px;
-  height: 18px;
-  transition: transform 0.3s ease;
-}
-
-.q-about-hero__cta:hover svg {
-  transform: translateX(3px);
-}
-
-.q-about-hero__scroll {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
+.q-about-btn-secondary {
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
-  color: var(--q-about-text-muted);
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  background: transparent;
+  color: var(--q-about-text);
+  border: 1px solid var(--q-about-border);
+  border-radius: 10px;
+  font-size: 0.925rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 0.25s ease, background 0.25s ease;
 }
 
-.q-about-hero__scroll-line {
-  width: 1px;
-  height: 40px;
-  background: linear-gradient(to bottom, var(--q-about-accent), transparent);
-  animation: q-about-scroll-line 2s ease-in-out infinite;
+.q-about-btn-secondary:hover {
+  border-color: rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.03);
 }
 
-/* ===== SECTION HEADER ===== */
-.q-about-section-header {
-  margin-bottom: 64px;
+/* ── SECTIONS SHARED ── */
+.q-about-section {
+  padding: 6rem 2rem;
+  position: relative;
 }
 
-.q-about-section-header--center {
-  text-align: center;
+.q-about-section-inner {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .q-about-section-label {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--q-about-accent);
-  margin-bottom: 18px;
+  margin-bottom: 1rem;
 }
 
 .q-about-section-label::before {
   content: '';
+  display: inline-block;
   width: 24px;
   height: 2px;
-  background: var(--q-about-gradient);
-  border-radius: 2px;
+  background: var(--q-about-accent);
+  border-radius: 1px;
 }
 
 .q-about-section-title {
-  font-family: var(--q-about-font-display);
-  font-size: clamp(32px, 4vw, 50px);
-  font-weight: 700;
-  color: var(--q-about-text-heading);
-  line-height: 1.15;
-  letter-spacing: -0.025em;
-  margin-bottom: 20px;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  color: var(--q-about-white);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
 }
 
 .q-about-section-desc {
-  font-size: 17px;
+  font-size: 1.05rem;
   color: var(--q-about-text-muted);
-  line-height: 1.75;
-  max-width: 700px;
+  max-width: 680px;
+  line-height: 1.8;
 }
 
-.q-about-section-header--center .q-about-section-desc {
-  margin: 0 auto;
+/* ── WHO WE ARE ── */
+.q-about-whoweare {
+  background: var(--q-about-gradient-2);
 }
 
-/* ===== WHO WE ARE SECTION ===== */
-.q-about-who {
-  background: var(--q-about-primary);
+.q-about-whoweare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+  margin-top: 3rem;
+}
+
+.q-about-whoweare-text p {
+  color: var(--q-about-text-muted);
+  font-size: 0.975rem;
+  line-height: 1.85;
+  margin-bottom: 1.5rem;
+}
+
+.q-about-whoweare-text p:last-child {
+  margin-bottom: 0;
+}
+
+.q-about-expertise-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--q-about-border);
+  border-radius: 16px;
+  padding: 2.5rem;
   position: relative;
+  overflow: hidden;
 }
 
-.q-about-who::before {
+.q-about-expertise-card::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--q-about-border), transparent);
+  background: linear-gradient(90deg, transparent, var(--q-about-accent), transparent);
+  opacity: 0.4;
 }
 
-.q-about-who__layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: start;
+.q-about-expertise-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--q-about-white);
+  margin-bottom: 1.5rem;
 }
 
-.q-about-who__text-block {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.q-about-who__text {
-  font-size: 16px;
-  color: var(--q-about-text-muted);
-  line-height: 1.8;
-}
-
-.q-about-who__text--lead {
-  font-size: 18px;
-  color: var(--q-about-text);
-  line-height: 1.75;
-}
-
-.q-about-who__visual {
-  position: relative;
-}
-
-.q-about-who__card {
-  background: var(--q-about-card-bg);
-  border: 1px solid var(--q-about-border);
-  border-radius: var(--q-about-radius);
-  padding: 44px;
-  backdrop-filter: blur(20px);
-  position: relative;
-  overflow: hidden;
-}
-
-.q-about-who__card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--q-about-gradient);
-}
-
-.q-about-who__card-title {
-  font-family: var(--q-about-font-display);
-  font-size: 20px;
-  font-weight: 600;
-  color: var(--q-about-text-heading);
-  margin-bottom: 28px;
-}
-
-.q-about-who__expertise-list {
+.q-about-expertise-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 1rem;
 }
 
-.q-about-who__expertise-item {
+.q-about-expertise-list li {
   display: flex;
   align-items: flex-start;
-  gap: 14px;
-  font-size: 15px;
-  color: var(--q-about-text);
+  gap: 0.75rem;
+  color: var(--q-about-text-muted);
+  font-size: 0.925rem;
   line-height: 1.6;
 }
 
-.q-about-who__expertise-icon {
-  width: 22px;
-  height: 22px;
-  min-width: 22px;
-  border-radius: 6px;
-  background: var(--q-about-gradient-subtle);
-  border: 1px solid rgba(59,130,246,0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.q-about-expertise-list li svg {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  color: var(--q-about-accent);
   margin-top: 2px;
 }
 
-.q-about-who__expertise-icon svg {
-  width: 12px;
-  height: 12px;
-  color: var(--q-about-accent);
-}
-
-.q-about-who__bottom-text {
-  margin-top: 48px;
-  font-size: 16px;
-  color: var(--q-about-text-muted);
-  line-height: 1.8;
-}
-
-/* ===== WHAT WE DO SECTION ===== */
-.q-about-whatwedo {
-  background: var(--q-about-secondary);
-  position: relative;
-}
-
-.q-about-whatwedo__intro {
+/* ── WHAT WE DO ── */
+.q-about-whatwedo-intro {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  margin-bottom: 80px;
+  gap: 4rem;
+  margin-top: 3rem;
+  margin-bottom: 4rem;
   align-items: start;
 }
 
-.q-about-whatwedo__intro-text {
-  font-size: 16px;
+.q-about-whatwedo-intro p {
   color: var(--q-about-text-muted);
-  line-height: 1.8;
+  font-size: 0.975rem;
+  line-height: 1.85;
+  margin-bottom: 1.25rem;
 }
 
-.q-about-whatwedo__intro-text p + p {
-  margin-top: 20px;
-}
-
-.q-about-whatwedo__highlight {
-  background: var(--q-about-card-bg);
-  border: 1px solid var(--q-about-border);
-  border-radius: var(--q-about-radius);
-  padding: 36px;
-  backdrop-filter: blur(20px);
-}
-
-.q-about-whatwedo__highlight-text {
-  font-size: 17px;
-  color: var(--q-about-text);
-  line-height: 1.75;
-  font-weight: 400;
-}
-
-/* ===== SOLUTION GRID ===== */
-.q-about-solutions__label {
+/* ── SOLUTIONS GRID ── */
+.q-about-solutions-heading {
   text-align: center;
-  margin-bottom: 52px;
+  margin-bottom: 3rem;
 }
 
-.q-about-solutions__label-text {
-  font-family: var(--q-about-font-display);
-  font-size: clamp(24px, 3vw, 32px);
-  font-weight: 600;
-  color: var(--q-about-text-heading);
-  letter-spacing: -0.02em;
+.q-about-solutions-heading h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--q-about-white);
 }
 
-.q-about-solutions__grid {
+.q-about-solutions-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1.25rem;
 }
 
 .cd-solution-card {
-  background: var(--q-about-card-bg);
+  background: var(--q-about-surface);
   border: 1px solid var(--q-about-border);
-  border-radius: var(--q-about-radius);
-  padding: 40px 36px;
-  transition: var(--q-about-transition);
+  border-radius: 14px;
+  padding: 2rem;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   overflow: hidden;
-  backdrop-filter: blur(20px);
-}
-
-.cd-solution-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--q-about-gradient-subtle);
-  opacity: 0;
-  transition: var(--q-about-transition);
 }
 
 .cd-solution-card:hover {
-  border-color: rgba(59,130,246,0.15);
-  transform: translateY(-4px);
+  border-color: rgba(59, 130, 246, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
 }
 
-.cd-solution-card:hover::before {
-  opacity: 1;
-}
-
-.cd-solution-card__icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  background: var(--q-about-gradient-subtle);
-  border: 1px solid rgba(59,130,246,0.12);
+.cd-solution-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--q-about-accent-glow);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 24px;
-  position: relative;
-  z-index: 1;
+  margin-bottom: 1.25rem;
+  color: var(--q-about-accent);
 }
 
-.cd-solution-card__icon svg {
+.cd-solution-icon svg {
   width: 22px;
   height: 22px;
-  color: var(--q-about-accent);
 }
 
-.cd-solution-card__title {
-  font-family: var(--q-about-font-display);
-  font-size: 17px;
-  font-weight: 600;
-  color: var(--q-about-text-heading);
-  margin-bottom: 14px;
-  line-height: 1.4;
-  position: relative;
-  z-index: 1;
-}
-
-.cd-solution-card__desc {
-  font-size: 14.5px;
-  color: var(--q-about-text-muted);
-  line-height: 1.7;
-  position: relative;
-  z-index: 1;
-}
-
-.q-about-solutions__footer {
-  text-align: center;
-  margin-top: 48px;
-  font-size: 15px;
-  color: var(--q-about-text-muted);
-  line-height: 1.7;
-}
-
-/* ===== INDUSTRIES SECTION ===== */
-.q-about-industries {
-  background: var(--q-about-primary);
-  position: relative;
-}
-
-.q-about-industries__layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: start;
-}
-
-.q-about-industries__text {
-  font-size: 16px;
-  color: var(--q-about-text-muted);
-  line-height: 1.8;
-  margin-bottom: 24px;
-}
-
-.q-about-industries__list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  margin-bottom: 36px;
-}
-
-.q-about-industries__item {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 16px 0;
-  border-bottom: 1px solid var(--q-about-border);
-  font-size: 15.5px;
-  color: var(--q-about-text);
-  transition: var(--q-about-transition);
-}
-
-.q-about-industries__item:first-child {
-  border-top: 1px solid var(--q-about-border);
-}
-
-.q-about-industries__item:hover {
-  padding-left: 8px;
-  color: var(--q-about-accent);
-}
-
-.q-about-industries__item-dot {
-  width: 8px;
-  height: 8px;
-  min-width: 8px;
-  border-radius: 50%;
-  background: var(--q-about-gradient);
-}
-
-.q-about-industries__advantage {
-  background: var(--q-about-card-bg);
-  border: 1px solid var(--q-about-border);
-  border-radius: var(--q-about-radius);
-  padding: 44px;
-  backdrop-filter: blur(20px);
-}
-
-.q-about-industries__advantage-title {
-  font-family: var(--q-about-font-display);
-  font-size: 20px;
-  font-weight: 600;
-  color: var(--q-about-text-heading);
-  margin-bottom: 20px;
-}
-
-.q-about-industries__advantage-text {
-  font-size: 15.5px;
-  color: var(--q-about-text-muted);
-  line-height: 1.8;
-}
-
-/* ===== APPROACH SECTION ===== */
-.q-about-approach {
-  background: var(--q-about-secondary);
-  position: relative;
-  overflow: hidden;
-}
-
-.q-about-approach__glow {
-  position: absolute;
-  top: 50%;
-  right: -200px;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(139,92,246,0.06) 0%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.q-about-approach__primary {
-  background: var(--q-about-card-bg);
-  border: 1px solid var(--q-about-border);
-  border-radius: var(--q-about-radius);
-  padding: 56px;
-  margin-bottom: 56px;
-  backdrop-filter: blur(20px);
-  position: relative;
-  overflow: hidden;
-}
-
-.q-about-approach__primary::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--q-about-gradient);
-}
-
-.q-about-approach__primary-title {
-  font-family: var(--q-about-font-display);
-  font-size: clamp(22px, 3vw, 28px);
-  font-weight: 600;
-  color: var(--q-about-text-heading);
-  margin-bottom: 20px;
-  letter-spacing: -0.02em;
-}
-
-.q-about-approach__primary-desc {
-  font-size: 16px;
-  color: var(--q-about-text-muted);
-  line-height: 1.8;
-  margin-bottom: 40px;
-  max-width: 800px;
-}
-
-.q-about-approach__capabilities {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-}
-
-.q-about-approach__capability {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  padding: 20px 24px;
-  background: rgba(255,255,255,0.02);
-  border: 1px solid var(--q-about-border);
-  border-radius: var(--q-about-radius-sm);
-  font-size: 14.5px;
-  color: var(--q-about-text);
-  line-height: 1.6;
-  transition: var(--q-about-transition);
-}
-
-.q-about-approach__capability:hover {
-  border-color: rgba(59,130,246,0.12);
-  background: rgba(59,130,246,0.03);
-}
-
-.q-about-approach__capability-num {
-  font-family: var(--q-about-font-display);
-  font-size: 12px;
+.cd-solution-card h4 {
+  font-size: 1rem;
   font-weight: 700;
-  color: var(--q-about-accent);
-  background: var(--q-about-gradient-subtle);
-  width: 28px;
-  height: 28px;
-  min-width: 28px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(59,130,246,0.15);
+  color: var(--q-about-white);
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
 }
 
-.q-about-approach__secondary {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-}
-
-.cd-approach-card {
-  background: var(--q-about-card-bg);
-  border: 1px solid var(--q-about-border);
-  border-radius: var(--q-about-radius);
-  padding: 40px;
-  backdrop-filter: blur(20px);
-  transition: var(--q-about-transition);
-}
-
-.cd-approach-card:hover {
-  border-color: rgba(59,130,246,0.12);
-  transform: translateY(-2px);
-}
-
-.cd-approach-card__title {
-  font-family: var(--q-about-font-display);
-  font-size: 19px;
-  font-weight: 600;
-  color: var(--q-about-text-heading);
-  margin-bottom: 14px;
-}
-
-.cd-approach-card__desc {
-  font-size: 15px;
+.cd-solution-card p {
+  font-size: 0.875rem;
   color: var(--q-about-text-muted);
   line-height: 1.75;
 }
 
-/* ===== ADVANTAGE SECTION ===== */
-.q-about-advantage {
-  background: var(--q-about-primary);
-  position: relative;
-}
-
-.q-about-advantage__grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-}
-
-.cd-advantage-block {
-  background: var(--q-about-card-bg);
-  border: 1px solid var(--q-about-border);
-  border-radius: var(--q-about-radius);
-  padding: 44px 40px;
-  backdrop-filter: blur(20px);
-  transition: var(--q-about-transition);
-  position: relative;
-  overflow: hidden;
-}
-
-.cd-advantage-block:hover {
-  border-color: rgba(59,130,246,0.12);
-  transform: translateY(-3px);
-}
-
-.cd-advantage-block__number {
-  font-family: var(--q-about-font-display);
-  font-size: 48px;
-  font-weight: 800;
-  background: var(--q-about-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  opacity: 0.15;
-  position: absolute;
-  top: 20px;
-  right: 28px;
-  line-height: 1;
-}
-
-.cd-advantage-block__title {
-  font-family: var(--q-about-font-display);
-  font-size: 20px;
-  font-weight: 600;
-  color: var(--q-about-text-heading);
-  margin-bottom: 16px;
-}
-
-.cd-advantage-block__desc {
-  font-size: 15px;
-  color: var(--q-about-text-muted);
-  line-height: 1.75;
-  margin-bottom: 28px;
-}
-
-.cd-advantage-block__list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.cd-advantage-block__list-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  font-size: 14.5px;
-  color: var(--q-about-text);
-  line-height: 1.6;
-}
-
-.cd-advantage-block__list-icon {
-  width: 18px;
-  height: 18px;
-  min-width: 18px;
-  margin-top: 2px;
-  color: var(--q-about-accent-2);
-}
-
-/* ===== VISION SECTION ===== */
-.q-about-vision {
-  background: var(--q-about-secondary);
-  position: relative;
-  overflow: hidden;
-}
-
-.q-about-vision__glow {
-  position: absolute;
-  top: -200px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 800px;
-  height: 400px;
-  background: radial-gradient(ellipse, rgba(59,130,246,0.06) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.q-about-vision__content {
-  max-width: 800px;
-  margin: 0 auto;
+.q-about-solutions-note {
   text-align: center;
-  position: relative;
-  z-index: 1;
-}
-
-.q-about-vision__text {
-  font-size: 17px;
+  margin-top: 2.5rem;
   color: var(--q-about-text-muted);
-  line-height: 1.8;
-  margin-bottom: 28px;
+  font-size: 0.925rem;
+  font-style: italic;
 }
 
-.q-about-vision__goals {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  margin-top: 52px;
-  text-align: left;
-}
-
-.q-about-vision__goal {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  padding: 24px 28px;
-  background: var(--q-about-card-bg);
-  border: 1px solid var(--q-about-border);
-  border-radius: var(--q-about-radius-sm);
-  font-size: 14.5px;
-  color: var(--q-about-text);
-  line-height: 1.6;
-  transition: var(--q-about-transition);
-  backdrop-filter: blur(20px);
-}
-
-.q-about-vision__goal:hover {
-  border-color: rgba(59,130,246,0.15);
-  transform: translateY(-2px);
-}
-
-.q-about-vision__goal-icon {
-  width: 20px;
-  height: 20px;
-  min-width: 20px;
-  color: var(--q-about-accent);
-  margin-top: 1px;
-}
-
-.q-about-vision__bottom {
-  margin-top: 40px;
-  font-size: 16px;
-  color: var(--q-about-text-muted);
-  line-height: 1.8;
-}
-
-/* ===== WORK WITH US SECTION ===== */
-.q-about-workwithus {
-  background: var(--q-about-primary);
-  position: relative;
-}
-
-.q-about-workwithus__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-bottom: 60px;
-}
-
-.cd-engage-card {
-  background: var(--q-about-card-bg);
-  border: 1px solid var(--q-about-border);
-  border-radius: var(--q-about-radius);
-  padding: 40px 36px;
-  backdrop-filter: blur(20px);
-  transition: var(--q-about-transition);
-}
-
-.cd-engage-card:hover {
-  border-color: rgba(59,130,246,0.12);
-  transform: translateY(-3px);
-}
-
-.cd-engage-card__title {
-  font-family: var(--q-about-font-display);
-  font-size: 19px;
-  font-weight: 600;
-  color: var(--q-about-text-heading);
-  margin-bottom: 20px;
-  padding-bottom: 20px;
+/* ── INDUSTRIES ── */
+.q-about-industries {
+  background: var(--q-about-surface);
+  border-top: 1px solid var(--q-about-border);
   border-bottom: 1px solid var(--q-about-border);
 }
 
-.cd-engage-card__list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+.q-about-industries-content {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 4rem;
+  align-items: start;
+  margin-top: 3rem;
 }
 
-.cd-engage-card__list-item {
+.q-about-industries-text p {
+  color: var(--q-about-text-muted);
+  font-size: 0.975rem;
+  line-height: 1.85;
+  margin-bottom: 1.25rem;
+}
+
+.q-about-industry-tags {
   display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  font-size: 14.5px;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.cd-industry-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  background: rgba(59, 130, 246, 0.06);
+  border: 1px solid rgba(59, 130, 246, 0.12);
+  border-radius: 10px;
   color: var(--q-about-text);
-  line-height: 1.6;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: background 0.25s ease, border-color 0.25s ease;
 }
 
-.cd-engage-card__list-icon {
+.cd-industry-tag:hover {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.25);
+}
+
+.cd-industry-tag svg {
   width: 16px;
   height: 16px;
-  min-width: 16px;
-  margin-top: 3px;
   color: var(--q-about-accent);
+  flex-shrink: 0;
 }
 
-/* ===== COMMITMENT CTA ===== */
-.q-about-commitment {
-  background: var(--q-about-card-bg);
+.q-about-industries-advantage {
+  background: rgba(255, 255, 255, 0.02);
   border: 1px solid var(--q-about-border);
-  border-radius: var(--q-about-radius);
-  padding: 64px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  backdrop-filter: blur(20px);
+  border-radius: 14px;
+  padding: 2rem;
+  margin-top: 2rem;
 }
 
-.q-about-commitment::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--q-about-gradient);
-}
-
-.q-about-commitment__title {
-  font-family: var(--q-about-font-display);
-  font-size: clamp(22px, 3vw, 28px);
-  font-weight: 600;
-  color: var(--q-about-text-heading);
-  margin-bottom: 14px;
-  letter-spacing: -0.02em;
-}
-
-.q-about-commitment__subtitle {
-  font-size: 16px;
+.q-about-industries-advantage p {
   color: var(--q-about-text-muted);
-  line-height: 1.7;
-  margin-bottom: 40px;
-  max-width: 600px;
+  font-size: 0.925rem;
+  line-height: 1.8;
+}
+
+/* ── APPROACH ── */
+.q-about-approach-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.q-about-approach-header .q-about-section-desc {
   margin-left: auto;
   margin-right: auto;
 }
 
-.q-about-commitment__items {
+.q-about-approach-main {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  margin-bottom: 44px;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+  margin-bottom: 3rem;
 }
 
-.q-about-commitment__item {
-  padding: 24px 20px;
-  background: rgba(255,255,255,0.02);
-  border: 1px solid var(--q-about-border);
-  border-radius: var(--q-about-radius-sm);
-  font-size: 14px;
+.q-about-approach-text p {
+  color: var(--q-about-text-muted);
+  font-size: 0.975rem;
+  line-height: 1.85;
+  margin-bottom: 1.25rem;
+}
+
+.q-about-capability-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.q-about-capability-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
   color: var(--q-about-text);
-  line-height: 1.6;
-  transition: var(--q-about-transition);
+  font-size: 0.925rem;
+  line-height: 1.7;
+  padding: 1rem 1.25rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--q-about-border);
+  border-radius: 10px;
+  transition: border-color 0.25s ease;
 }
 
-.q-about-commitment__item:hover {
-  border-color: rgba(59,130,246,0.12);
-  background: rgba(59,130,246,0.03);
+.q-about-capability-list li:hover {
+  border-color: rgba(59, 130, 246, 0.15);
 }
 
-.q-about-commitment__bottom-text {
-  font-size: 15px;
+.q-about-capability-list li .q-about-list-num {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--q-about-accent-glow);
+  color: var(--q-about-accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.q-about-approach-pillars {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.cd-pillar-card {
+  background: var(--q-about-surface);
+  border: 1px solid var(--q-about-border);
+  border-radius: 14px;
+  padding: 2rem;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.cd-pillar-card:hover {
+  border-color: rgba(59, 130, 246, 0.15);
+  transform: translateY(-2px);
+}
+
+.cd-pillar-card h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--q-about-white);
+  margin-bottom: 0.5rem;
+}
+
+.cd-pillar-card p {
+  font-size: 0.875rem;
   color: var(--q-about-text-muted);
   line-height: 1.7;
 }
 
-/* ===== FOOTER ===== */
-.q-about-footer {
-  background: var(--q-about-primary);
-  padding: 80px 0 40px;
-  border-top: 1px solid var(--q-about-border);
+/* ── ADVANTAGE ── */
+.q-about-advantage {
+  background: var(--q-about-gradient-2);
 }
 
-.q-about-footer__layout {
+.q-about-advantage-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 60px;
-  margin-bottom: 60px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
 }
 
-.q-about-footer__brand-name {
-  font-family: var(--q-about-font-display);
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--q-about-text-heading);
-  margin-bottom: 20px;
+.cd-advantage-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--q-about-border);
+  border-radius: 16px;
+  padding: 2.25rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s ease, transform 0.3s ease;
 }
 
-.q-about-footer__brand-desc {
-  font-size: 14.5px;
-  color: var(--q-about-text-muted);
-  line-height: 1.8;
-  max-width: 400px;
+.cd-advantage-card:hover {
+  border-color: rgba(59, 130, 246, 0.15);
+  transform: translateY(-2px);
 }
 
-.q-about-footer__col-title {
-  font-family: var(--q-about-font-display);
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--q-about-text-heading);
-  margin-bottom: 20px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+.cd-advantage-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 2rem;
+  right: 2rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(59,130,246,0.3), transparent);
 }
 
-.q-about-footer__links {
-  list-style: none;
+.cd-advantage-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--q-about-accent-glow);
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.q-about-footer__link {
-  font-size: 14.5px;
-  color: var(--q-about-text-muted);
-  text-decoration: none;
-  transition: var(--q-about-transition);
-}
-
-.q-about-footer__link:hover {
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
   color: var(--q-about-accent);
 }
 
-.q-about-footer__bottom {
-  padding-top: 32px;
-  border-top: 1px solid var(--q-about-border);
-  text-align: center;
-  font-size: 13px;
-  color: var(--q-about-text-muted);
+.cd-advantage-icon svg {
+  width: 24px;
+  height: 24px;
 }
 
-/* ===== DIVIDER ===== */
+.cd-advantage-card h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--q-about-white);
+  margin-bottom: 0.75rem;
+}
+
+.cd-advantage-card > p {
+  font-size: 0.9rem;
+  color: var(--q-about-text-muted);
+  line-height: 1.75;
+  margin-bottom: 1.25rem;
+}
+
+.cd-advantage-strengths {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.cd-advantage-strengths li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  color: var(--q-about-text);
+  line-height: 1.6;
+}
+
+.cd-advantage-strengths li svg {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: var(--q-about-accent);
+  margin-top: 2px;
+}
+
+/* ── VISION ── */
+.q-about-vision {
+  position: relative;
+  overflow: hidden;
+}
+
+.q-about-vision-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(59, 130, 246, 0.06) 0%, transparent 60%);
+}
+
+.q-about-vision-content {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.q-about-vision-text p {
+  color: var(--q-about-text-muted);
+  font-size: 0.975rem;
+  line-height: 1.85;
+  margin-bottom: 1.25rem;
+}
+
+.q-about-vision-goals {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.q-about-vision-goals li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1.25rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--q-about-border);
+  border-radius: 12px;
+  color: var(--q-about-text);
+  font-size: 0.925rem;
+  line-height: 1.6;
+  transition: border-color 0.25s ease;
+}
+
+.q-about-vision-goals li:hover {
+  border-color: rgba(59, 130, 246, 0.15);
+}
+
+.q-about-vision-goals li svg {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: var(--q-about-accent);
+  margin-top: 1px;
+}
+
+.q-about-vision-statement {
+  background: var(--q-about-surface);
+  border: 1px solid var(--q-about-border);
+  border-radius: 16px;
+  padding: 2.5rem;
+  position: relative;
+}
+
+.q-about-vision-statement p {
+  color: var(--q-about-text-muted);
+  font-size: 0.975rem;
+  line-height: 1.85;
+}
+
+/* ── WORK WITH US ── */
+.q-about-workwithus {
+  background: var(--q-about-surface);
+  border-top: 1px solid var(--q-about-border);
+}
+
+.q-about-workwithus-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.q-about-workwithus-header .q-about-section-desc {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.q-about-workwithus-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.cd-engage-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--q-about-border);
+  border-radius: 14px;
+  padding: 2.25rem;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.cd-engage-card:hover {
+  border-color: rgba(59, 130, 246, 0.15);
+  transform: translateY(-2px);
+}
+
+.cd-engage-card h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--q-about-white);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.cd-engage-card h4 svg {
+  width: 20px;
+  height: 20px;
+  color: var(--q-about-accent);
+}
+
+.cd-engage-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.cd-engage-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.875rem;
+  color: var(--q-about-text-muted);
+  line-height: 1.65;
+}
+
+.cd-engage-list li svg {
+  flex-shrink: 0;
+  width: 15px;
+  height: 15px;
+  color: var(--q-about-accent);
+  margin-top: 3px;
+}
+
+/* ── CTA ── */
+.q-about-cta {
+  position: relative;
+  padding: 6rem 2rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+.q-about-cta-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 60%);
+}
+
+.q-about-cta-inner {
+  position: relative;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.q-about-cta-inner h3 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 800;
+  color: var(--q-about-white);
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.q-about-cta-inner p {
+  color: var(--q-about-text-muted);
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+/* ── FOOTER ── */
+.q-about-footer {
+  border-top: 1px solid var(--q-about-border);
+  padding: 4rem 2rem 2rem;
+  background: var(--q-about-primary);
+}
+
+.q-about-footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.q-about-footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.q-about-footer-brand p {
+  color: var(--q-about-text-muted);
+  font-size: 0.875rem;
+  line-height: 1.8;
+  margin-top: 1rem;
+  max-width: 360px;
+}
+
+.q-about-footer-col h5 {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--q-about-white);
+  margin-bottom: 1.25rem;
+}
+
+.q-about-footer-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.q-about-footer-col ul a {
+  color: var(--q-about-text-muted);
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.25s ease;
+}
+
+.q-about-footer-col ul a:hover {
+  color: var(--q-about-white);
+}
+
+.q-about-footer-bottom {
+  border-top: 1px solid var(--q-about-border);
+  padding-top: 1.5rem;
+  text-align: center;
+  color: var(--q-about-text-muted);
+  font-size: 0.8rem;
+}
+
+/* ── DIVIDER ── */
 .q-about-divider {
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--q-about-border), transparent);
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* ===== ANIMATIONS ===== */
-@keyframes q-about-pulse {
-  0%, 100% { transform: scale(1); opacity: 0.6; }
-  50% { transform: scale(1.15); opacity: 1; }
-}
-
-@keyframes q-about-blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
-}
-
-@keyframes q-about-scroll-line {
-  0% { transform: scaleY(0); transform-origin: top; }
-  50% { transform: scaleY(1); transform-origin: top; }
-  51% { transform-origin: bottom; }
-  100% { transform: scaleY(0); transform-origin: bottom; }
-}
-
-@keyframes q-about-fadeUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.q-about-animate {
+/* ── ANIMATIONS ── */
+.q-about-fade-up {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
-.q-about-animate.q-about-visible {
+.q-about-fade-up.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-.q-about-animate-delay-1 { transition-delay: 0.1s; }
-.q-about-animate-delay-2 { transition-delay: 0.2s; }
-.q-about-animate-delay-3 { transition-delay: 0.3s; }
-.q-about-animate-delay-4 { transition-delay: 0.4s; }
-.q-about-animate-delay-5 { transition-delay: 0.5s; }
-.q-about-animate-delay-6 { transition-delay: 0.6s; }
-
-/* ===== RESPONSIVE ===== */
+/* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
-  .q-about-section { padding: 80px 0; }
-
-  .q-about-who__layout,
-  .q-about-industries__layout,
-  .q-about-whatwedo__intro {
+  .q-about-whoweare-grid,
+  .q-about-whatwedo-intro,
+  .q-about-approach-main,
+  .q-about-vision-content,
+  .q-about-industries-content {
     grid-template-columns: 1fr;
-    gap: 48px;
+    gap: 2.5rem;
   }
 
-  .q-about-approach__primary { padding: 40px; }
-  .q-about-approach__capabilities { grid-template-columns: 1fr; }
-  .q-about-approach__secondary { grid-template-columns: 1fr; }
-
-  .q-about-advantage__grid { grid-template-columns: 1fr; }
-
-  .q-about-workwithus__grid { grid-template-columns: 1fr; }
-
-  .q-about-commitment__items { grid-template-columns: repeat(2, 1fr); }
-  .q-about-commitment { padding: 44px 32px; }
-
-  .q-about-footer__layout {
+  .q-about-advantage-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
   }
 
-  .q-about-vision__goals { grid-template-columns: 1fr; }
+  .q-about-workwithus-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .q-about-approach-pillars {
+    grid-template-columns: 1fr;
+  }
+
+  .q-about-footer-top {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
 }
 
 @media (max-width: 768px) {
-  .q-about-hero { min-height: auto; padding: 120px 0 80px; }
-  .q-about-section { padding: 64px 0; }
+  .q-about-nav-links {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(10, 15, 30, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    z-index: 999;
+  }
 
-  .q-about-solutions__grid { grid-template-columns: 1fr; }
+  .q-about-nav-links.is-open {
+    display: flex;
+  }
 
-  .q-about-who__card { padding: 32px; }
+  .q-about-nav-links a {
+    font-size: 1.1rem;
+  }
 
-  .q-about-commitment__items { grid-template-columns: 1fr; }
+  .q-about-mobile-toggle {
+    display: flex;
+    z-index: 1001;
+  }
 
-  .q-about-hero__scroll { display: none; }
-  
-  .q-about-approach__primary { padding: 28px 24px; }
+  .q-about-hero {
+    min-height: 70vh;
+    padding: 8rem 1.5rem 4rem;
+  }
 
-  .q-about-commitment { padding: 36px 24px; }
+  .q-about-section {
+    padding: 4rem 1.5rem;
+  }
+
+  .q-about-solutions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .q-about-hero-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .q-about-hero-actions a {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
 }
 
 @media (max-width: 480px) {
-  .q-about-container { padding: 0 16px; }
-  .q-about-hero { padding: 100px 0 60px; }
-  .q-about-section { padding: 52px 0; }
-  .cd-solution-card { padding: 28px 24px; }
-  .cd-advantage-block { padding: 32px 24px; }
-  .cd-engage-card { padding: 28px 24px; }
+  .q-about-hero h1 {
+    font-size: 2rem;
+  }
+
+  .q-about-section-title {
+    font-size: 1.6rem;
+  }
+
+  .cd-solution-card,
+  .cd-advantage-card,
+  .cd-engage-card,
+  .cd-pillar-card {
+    padding: 1.5rem;
+  }
 }
 </style>
 
-<!-- ===== HERO SECTION ===== -->
-<div class="q-about-page">
+<!-- ════════════════════════════════════════════════ -->
+<!-- NAV -->
+<!-- ════════════════════════════════════════════════ -->
+<nav class="q-about-nav">
+  <div class="q-about-nav-inner">
+    <a href="#" class="q-about-logo">Aperture<span>.</span></a>
+    <ul class="q-about-nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">AIoT Core Platforms</a></li>
+      <li><a href="#">AIoT Systems</a></li>
+      <li><a href="#">Aperture Ventures Summit</a></li>
+      <li><a href="#" class="is-active">About</a></li>
+    </ul>
+    <button class="q-about-mobile-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
 
-  <section class="q-about-hero">
-    <div class="q-about-hero__bg">
-      <div class="q-about-hero__grid-pattern"></div>
+<!-- ════════════════════════════════════════════════ -->
+<!-- HERO -->
+<!-- ════════════════════════════════════════════════ -->
+<section class="q-about-hero">
+  <div class="q-about-hero-bg"></div>
+  <div class="q-about-hero-grid"></div>
+  <div class="q-about-hero-content q-about-fade-up">
+    <div class="q-about-hero-badge">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 0 0-2.455 2.456Z"/></svg>
+      About Aperture AIoT
     </div>
-    <div class="q-about-container">
-      <div class="q-about-hero__content q-about-animate">
-        <div class="q-about-hero__badge">
-          <span class="q-about-hero__badge-dot"></span>
-          About Aperture AIoT
-        </div>
-        <h1 class="q-about-hero__title">
-          Transforming Data into<br><span class="q-about-hero__title-accent">Intelligence</span>
-        </h1>
-        <p class="q-about-hero__subtitle">
-          Designing, developing, and delivering advanced AI + IoT systems for industrial operations, enterprises, institutions, and governments.
-        </p>
-        <a href="#" class="q-about-hero__cta">
-          Join With Us
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-        </a>
-      </div>
+    <h1>Transforming Data into <span class="q-about-gradient-text">Intelligence</span></h1>
+    <p class="q-about-hero-sub">Aperture AIoT operates at the intersection of physical systems and artificial intelligence, converting real-world data into structured intelligence.</p>
+    <div class="q-about-hero-actions">
+      <a href="#" class="q-about-btn-primary">
+        Join With Us
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+      </a>
+      <a href="#who-we-are" class="q-about-btn-secondary">
+        Learn More
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
+      </a>
     </div>
-    <div class="q-about-hero__scroll">
-      <span>Scroll</span>
-      <div class="q-about-hero__scroll-line"></div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- WHO WE ARE -->
+<!-- ════════════════════════════════════════════════ -->
+<section class="q-about-section q-about-whoweare" id="who-we-are">
+  <div class="q-about-section-inner">
+    <div class="q-about-fade-up">
+      <span class="q-about-section-label">Who We Are</span>
+      <h2 class="q-about-section-title">Built for Real-World Intelligence</h2>
     </div>
-  </section>
-
-  <!-- ===== WHO WE ARE ===== -->
-  <section class="q-about-section q-about-who">
-    <div class="q-about-container">
-      <div class="q-about-section-header q-about-animate">
-        <span class="q-about-section-label">About Us</span>
-        <h2 class="q-about-section-title">Who We Are</h2>
+    <div class="q-about-whoweare-grid">
+      <div class="q-about-whoweare-text q-about-fade-up">
+        <p>Aperture AIoT is a platform that designs, develops, and delivers advanced AI + IoT systems for industrial operations, enterprises, institutions, and governments. The platform is built to address real-world operational challenges by integrating sensing technologies, connected devices, and artificial intelligence into cohesive, production-ready systems.</p>
+        <p>Physical environments generate continuous streams of data through equipment, infrastructure, people, and environmental conditions. Many organizations capture fragments of this data but lack the ability to convert it into meaningful operational intelligence. Aperture AIoT bridges this gap by combining data acquisition, processing, and intelligent analysis into unified systems that deliver measurable outcomes.</p>
+        <p>The platform operates at the intersection of real-world sensing technologies and artificial intelligence, enabling physical environments to become intelligent, responsive, and data-driven systems. This capability allows organizations to monitor assets, optimize workflows, improve safety conditions, and enhance decision-making with a level of visibility that traditional systems cannot provide.</p>
+        <p>The focus extends beyond deploying hardware or software. Each system is designed to solve high-impact operational problems that affect efficiency, safety, cost management, and performance. Solutions are developed with a clear understanding of how operations function in real environments, ensuring that implementations deliver practical value rather than theoretical benefits.</p>
       </div>
-      <div class="q-about-who__layout">
-        <div class="q-about-who__text-block q-about-animate">
-          <p class="q-about-who__text q-about-who__text--lead">
-            Aperture AIoT is a platform that designs, develops, and delivers advanced AI + IoT systems for industrial operations, enterprises, institutions, and governments. The platform is built to address real-world operational challenges by integrating sensing technologies, connected devices, and artificial intelligence into cohesive, production-ready systems.
-          </p>
-          <p class="q-about-who__text">
-            Physical environments generate continuous streams of data through equipment, infrastructure, people, and environmental conditions. Many organizations capture fragments of this data but lack the ability to convert it into meaningful operational intelligence. Aperture AIoT bridges this gap by combining data acquisition, processing, and intelligent analysis into unified systems that deliver measurable outcomes.
-          </p>
-          <p class="q-about-who__text">
-            The platform operates at the intersection of real-world sensing technologies and artificial intelligence, enabling physical environments to become intelligent, responsive, and data-driven systems. This capability allows organizations to monitor assets, optimize workflows, improve safety conditions, and enhance decision-making with a level of visibility that traditional systems cannot provide.
-          </p>
-          <p class="q-about-who__text">
-            The focus extends beyond deploying hardware or software. Each system is designed to solve high-impact operational problems that affect efficiency, safety, cost management, and performance. Solutions are developed with a clear understanding of how operations function in real environments, ensuring that implementations deliver practical value rather than theoretical benefits.
-          </p>
-        </div>
-        <div class="q-about-who__visual q-about-animate q-about-animate-delay-2">
-          <div class="q-about-who__card">
-            <h3 class="q-about-who__card-title">Aperture AIoT is built on deep expertise across multiple domains:</h3>
-            <ul class="q-about-who__expertise-list">
-              <li class="q-about-who__expertise-item">
-                <span class="q-about-who__expertise-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                </span>
-                IoT hardware and system integration
-              </li>
-              <li class="q-about-who__expertise-item">
-                <span class="q-about-who__expertise-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                </span>
-                Artificial intelligence and data analytics
-              </li>
-              <li class="q-about-who__expertise-item">
-                <span class="q-about-who__expertise-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                </span>
-                Large-scale B2B system deployments
-              </li>
-              <li class="q-about-who__expertise-item">
-                <span class="q-about-who__expertise-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                </span>
-                Global technology ecosystems and supply chains
-              </li>
-            </ul>
-          </div>
-          <p class="q-about-who__bottom-text">
-            This combination of engineering capability and operational understanding allows Aperture AIoT to deliver systems that perform reliably in complex environments such as factories, logistics networks, healthcare facilities, and infrastructure systems.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== WHAT WE DO ===== -->
-  <section class="q-about-section q-about-whatwedo">
-    <div class="q-about-container">
-      <div class="q-about-section-header q-about-animate">
-        <span class="q-about-section-label">Our Work</span>
-        <h2 class="q-about-section-title">What We Do</h2>
-      </div>
-      <div class="q-about-whatwedo__intro q-about-animate">
-        <div class="q-about-whatwedo__intro-text">
-          <p>Aperture AIoT designs, builds, and deploys AI-powered IoT systems that convert real-world signals into structured data, then transform that data into actionable intelligence, predictive insights, and automated decisions.</p>
-          <p>These systems function as operational intelligence layers that sit on top of physical processes. Sensors, tracking technologies, and connected devices capture data continuously. This data is processed, analyzed, and translated into insights that directly influence how operations are managed.</p>
-        </div>
-        <div class="q-about-whatwedo__highlight">
-          <p class="q-about-whatwedo__highlight-text">
-            The result is a shift from reactive operations to systems that can anticipate issues, optimize resources, and support informed decision-making.
-          </p>
-        </div>
-      </div>
-
-      <!-- Core Solutions -->
-      <div class="q-about-solutions__label q-about-animate">
-        <h3 class="q-about-solutions__label-text">Core Solution Areas</h3>
-        <p class="q-about-section-desc" style="margin: 12px auto 0; font-size: 15px;">Aperture AIoT provides a comprehensive set of systems across key operational domains:</p>
-      </div>
-
-      <div class="q-about-solutions__grid">
-        <div class="cd-solution-card q-about-animate">
-          <div class="cd-solution-card__icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-          </div>
-          <h4 class="cd-solution-card__title">AI + IoT for Asset Tracking & Visibility</h4>
-          <p class="cd-solution-card__desc">Real-time tracking of equipment, tools, and assets across facilities and supply chains, enabling better utilization and reduced loss.</p>
-        </div>
-
-        <div class="cd-solution-card q-about-animate q-about-animate-delay-1">
-          <div class="cd-solution-card__icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
-          </div>
-          <h4 class="cd-solution-card__title">AI + IoT for Inventory & Operations Optimization</h4>
-          <p class="cd-solution-card__desc">Intelligent inventory monitoring and workflow optimization that improves throughput and reduces inefficiencies.</p>
-        </div>
-
-        <div class="cd-solution-card q-about-animate q-about-animate-delay-2">
-          <div class="cd-solution-card__icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-          </div>
-          <h4 class="cd-solution-card__title">AI + IoT for People Tracking & Safety Systems</h4>
-          <p class="cd-solution-card__desc">Monitoring workforce movement, ensuring safety compliance, and supporting rapid response in critical situations.</p>
-        </div>
-
-        <div class="cd-solution-card q-about-animate q-about-animate-delay-1">
-          <div class="cd-solution-card__icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-          </div>
-          <h4 class="cd-solution-card__title">AI + IoT for Access Control & Security</h4>
-          <p class="cd-solution-card__desc">Identity-based access systems combined with real-time monitoring and behavioral analysis to strengthen security.</p>
-        </div>
-
-        <div class="cd-solution-card q-about-animate q-about-animate-delay-2">
-          <div class="cd-solution-card__icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-          </div>
-          <h4 class="cd-solution-card__title">AI + IoT for Environmental, Structural & Operational Monitoring</h4>
-          <p class="cd-solution-card__desc">Continuous tracking of environmental conditions, infrastructure performance, and operational parameters.</p>
-        </div>
-
-        <div class="cd-solution-card q-about-animate q-about-animate-delay-3">
-          <div class="cd-solution-card__icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-          </div>
-          <h4 class="cd-solution-card__title">AI + IoT for Predictive Maintenance</h4>
-          <p class="cd-solution-card__desc">Early identification of equipment issues using data patterns and predictive models to reduce downtime.</p>
-        </div>
-
-        <div class="cd-solution-card q-about-animate q-about-animate-delay-4">
-          <div class="cd-solution-card__icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-          </div>
-          <h4 class="cd-solution-card__title">AI + IoT for Industrial Intelligence Platforms</h4>
-          <p class="cd-solution-card__desc">Centralized systems that unify data across operations and provide actionable insights for decision-making.</p>
-        </div>
-      </div>
-
-      <p class="q-about-solutions__footer q-about-animate">
-        Each system is designed for deployment in real operational environments, with emphasis on reliability, scalability, and integration with existing processes.
-      </p>
-    </div>
-  </section>
-
-  <!-- ===== INDUSTRIES ===== -->
-  <section class="q-about-section q-about-industries">
-    <div class="q-about-container">
-      <div class="q-about-section-header q-about-animate">
-        <span class="q-about-section-label">Sectors</span>
-        <h2 class="q-about-section-title">Industries We Serve</h2>
-        <p class="q-about-section-desc">Aperture AIoT systems are designed for use across a wide range of industries where physical operations play a critical role. The platform supports organizations operating in complex environments that require visibility, coordination, and efficiency.</p>
-      </div>
-      <div class="q-about-industries__layout">
-        <div class="q-about-animate">
-          <p class="q-about-industries__text">Industries served include:</p>
-          <ul class="q-about-industries__list">
-            <li class="q-about-industries__item">
-              <span class="q-about-industries__item-dot"></span>
-              Manufacturing and industrial operations
+      <div class="q-about-fade-up">
+        <div class="q-about-expertise-card">
+          <h3 class="q-about-expertise-title">Aperture AIoT is built on deep expertise across multiple domains:</h3>
+          <ul class="q-about-expertise-list">
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+              IoT hardware and system integration
             </li>
-            <li class="q-about-industries__item">
-              <span class="q-about-industries__item-dot"></span>
-              Logistics and supply chain networks
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+              Artificial intelligence and data analytics
             </li>
-            <li class="q-about-industries__item">
-              <span class="q-about-industries__item-dot"></span>
-              Healthcare facilities and institutions
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+              Large-scale B2B system deployments
             </li>
-            <li class="q-about-industries__item">
-              <span class="q-about-industries__item-dot"></span>
-              Infrastructure and smart buildings
-            </li>
-            <li class="q-about-industries__item">
-              <span class="q-about-industries__item-dot"></span>
-              Energy and utilities
-            </li>
-            <li class="q-about-industries__item">
-              <span class="q-about-industries__item-dot"></span>
-              Government and public-sector operations
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+              Global technology ecosystems and supply chains
             </li>
           </ul>
         </div>
-        <div class="q-about-animate q-about-animate-delay-2">
-          <div class="q-about-industries__advantage">
-            <h3 class="q-about-industries__advantage-title">Cross-Industry Advantage</h3>
-            <p class="q-about-industries__advantage-text">
-              Cross-industry applicability provides a strategic advantage. Proven system architectures can be adapted to new environments, reducing deployment time and increasing reliability. Lessons learned in one sector can be applied to others, accelerating improvement and innovation.
-            </p>
+        <p style="color: var(--q-about-text-muted); font-size: 0.925rem; line-height: 1.85; margin-top: 1.5rem;">This combination of engineering capability and operational understanding allows Aperture AIoT to deliver systems that perform reliably in complex environments such as factories, logistics networks, healthcare facilities, and infrastructure systems.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- WHAT WE DO -->
+<!-- ════════════════════════════════════════════════ -->
+<section class="q-about-section">
+  <div class="q-about-section-inner">
+    <div class="q-about-fade-up">
+      <span class="q-about-section-label">What We Do</span>
+      <h2 class="q-about-section-title">From Signal to Intelligence</h2>
+    </div>
+    <div class="q-about-whatwedo-intro q-about-fade-up">
+      <div>
+        <p>Aperture AIoT designs, builds, and deploys AI-powered IoT systems that convert real-world signals into structured data, then transform that data into actionable intelligence, predictive insights, and automated decisions.</p>
+        <p>These systems function as operational intelligence layers that sit on top of physical processes. Sensors, tracking technologies, and connected devices capture data continuously. This data is processed, analyzed, and translated into insights that directly influence how operations are managed.</p>
+      </div>
+      <div>
+        <p>The result is a shift from reactive operations to systems that can anticipate issues, optimize resources, and support informed decision-making.</p>
+      </div>
+    </div>
+
+    <div class="q-about-solutions-heading q-about-fade-up">
+      <span class="q-about-section-label" style="justify-content: center;">Core Solutions</span>
+      <h3>Core Solution Areas</h3>
+      <p class="q-about-section-desc" style="margin: 0.75rem auto 0;">Aperture AIoT provides a comprehensive set of systems across key operational domains:</p>
+    </div>
+
+    <div class="q-about-solutions-grid q-about-fade-up">
+      <div class="cd-solution-card">
+        <div class="cd-solution-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg>
+        </div>
+        <h4>AI + IoT for Asset Tracking & Visibility</h4>
+        <p>Real-time tracking of equipment, tools, and assets across facilities and supply chains, enabling better utilization and reduced loss.</p>
+      </div>
+
+      <div class="cd-solution-card">
+        <div class="cd-solution-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z"/></svg>
+        </div>
+        <h4>AI + IoT for Inventory & Operations Optimization</h4>
+        <p>Intelligent inventory monitoring and workflow optimization that improves throughput and reduces inefficiencies.</p>
+      </div>
+
+      <div class="cd-solution-card">
+        <div class="cd-solution-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"/></svg>
+        </div>
+        <h4>AI + IoT for People Tracking & Safety Systems</h4>
+        <p>Monitoring workforce movement, ensuring safety compliance, and supporting rapid response in critical situations.</p>
+      </div>
+
+      <div class="cd-solution-card">
+        <div class="cd-solution-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+        </div>
+        <h4>AI + IoT for Access Control & Security</h4>
+        <p>Identity-based access systems combined with real-time monitoring and behavioral analysis to strengthen security.</p>
+      </div>
+
+      <div class="cd-solution-card">
+        <div class="cd-solution-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"/></svg>
+        </div>
+        <h4>AI + IoT for Environmental, Structural & Operational Monitoring</h4>
+        <p>Continuous tracking of environmental conditions, infrastructure performance, and operational parameters.</p>
+      </div>
+
+      <div class="cd-solution-card">
+        <div class="cd-solution-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 0 0 4.486-6.336l-3.276 3.277a3.004 3.004 0 0 1-2.25-2.25l3.276-3.276a4.5 4.5 0 0 0-6.336 4.486c.049.58.025 1.192-.14 1.743"/></svg>
+        </div>
+        <h4>AI + IoT for Predictive Maintenance</h4>
+        <p>Early identification of equipment issues using data patterns and predictive models to reduce downtime.</p>
+      </div>
+
+      <div class="cd-solution-card">
+        <div class="cd-solution-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5M9 11.25v-1.5m3 1.5v-4.5m3 4.5V9"/></svg>
+        </div>
+        <h4>AI + IoT for Industrial Intelligence Platforms</h4>
+        <p>Centralized systems that unify data across operations and provide actionable insights for decision-making.</p>
+      </div>
+    </div>
+
+    <p class="q-about-solutions-note q-about-fade-up">Each system is designed for deployment in real operational environments, with emphasis on reliability, scalability, and integration with existing processes.</p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- INDUSTRIES -->
+<!-- ════════════════════════════════════════════════ -->
+<section class="q-about-section q-about-industries">
+  <div class="q-about-section-inner">
+    <div class="q-about-fade-up">
+      <span class="q-about-section-label">Industries We Serve</span>
+      <h2 class="q-about-section-title">Cross-Industry Intelligence</h2>
+    </div>
+    <div class="q-about-industries-content">
+      <div class="q-about-fade-up">
+        <div class="q-about-industries-text">
+          <p>Aperture AIoT systems are designed for use across a wide range of industries where physical operations play a critical role. The platform supports organizations operating in complex environments that require visibility, coordination, and efficiency.</p>
+          <p>Industries served include:</p>
+        </div>
+        <div class="q-about-industry-tags">
+          <div class="cd-industry-tag">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205 3 1m1.5.5-1.5-.5M6.75 7.364V3h-3v18m3-13.636 10.5-3.819"/></svg>
+            Manufacturing and industrial operations
           </div>
+          <div class="cd-industry-tag">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg>
+            Logistics and supply chain networks
+          </div>
+          <div class="cd-industry-tag">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>
+            Healthcare facilities and institutions
+          </div>
+          <div class="cd-industry-tag">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m7.5 0h2.25"/></svg>
+            Infrastructure and smart buildings
+          </div>
+          <div class="cd-industry-tag">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z"/></svg>
+            Energy and utilities
+          </div>
+          <div class="cd-industry-tag">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0 0 12 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75Z"/></svg>
+            Government and public-sector operations
+          </div>
+        </div>
+      </div>
+      <div class="q-about-fade-up">
+        <div class="q-about-industries-advantage">
+          <p>Cross-industry applicability provides a strategic advantage. Proven system architectures can be adapted to new environments, reducing deployment time and increasing reliability. Lessons learned in one sector can be applied to others, accelerating improvement and innovation.</p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===== OUR APPROACH ===== -->
-  <section class="q-about-section q-about-approach">
-    <div class="q-about-approach__glow"></div>
-    <div class="q-about-container">
-      <div class="q-about-section-header q-about-section-header--center q-about-animate">
-        <span class="q-about-section-label">Methodology</span>
-        <h2 class="q-about-section-title">Our Approach</h2>
+<!-- ════════════════════════════════════════════════ -->
+<!-- OUR APPROACH -->
+<!-- ════════════════════════════════════════════════ -->
+<section class="q-about-section">
+  <div class="q-about-section-inner">
+    <div class="q-about-approach-header q-about-fade-up">
+      <span class="q-about-section-label" style="justify-content: center;">Our Approach</span>
+      <h2 class="q-about-section-title">From Data to Intelligence</h2>
+      <p class="q-about-section-desc">Traditional IoT implementations focus on collecting data, but data alone does not create value. Many organizations face challenges in interpreting large volumes of information and translating it into decisions.</p>
+    </div>
+
+    <div class="q-about-approach-main q-about-fade-up">
+      <div class="q-about-approach-text">
+        <p>Aperture AIoT addresses this challenge by applying artificial intelligence and advanced analytics to convert raw data into meaningful outcomes. Systems are designed to not only collect information but to analyze, interpret, and act on it.</p>
+        <p>Key capabilities include:</p>
       </div>
+      <ul class="q-about-capability-list">
+        <li>
+          <span class="q-about-list-num">01</span>
+          Continuous collection of real-time data from physical environments
+        </li>
+        <li>
+          <span class="q-about-list-num">02</span>
+          Structuring and processing large-scale data streams
+        </li>
+        <li>
+          <span class="q-about-list-num">03</span>
+          Applying AI models to identify patterns, anomalies, and inefficiencies
+        </li>
+        <li>
+          <span class="q-about-list-num">04</span>
+          Generating insights that support proactive and autonomous decision-making
+        </li>
+      </ul>
+    </div>
 
-      <!-- From Data to Intelligence -->
-      <div class="q-about-approach__primary q-about-animate">
-        <h3 class="q-about-approach__primary-title">From Data to Intelligence</h3>
-        <p class="q-about-approach__primary-desc">
-          Traditional IoT implementations focus on collecting data, but data alone does not create value. Many organizations face challenges in interpreting large volumes of information and translating it into decisions.
-        </p>
-        <p class="q-about-approach__primary-desc">
-          Aperture AIoT addresses this challenge by applying artificial intelligence and advanced analytics to convert raw data into meaningful outcomes. Systems are designed to not only collect information but to analyze, interpret, and act on it.
-        </p>
-        <p class="q-about-approach__primary-desc" style="margin-bottom: 32px;">Key capabilities include:</p>
-        <div class="q-about-approach__capabilities">
-          <div class="q-about-approach__capability">
-            <span class="q-about-approach__capability-num">01</span>
-            Continuous collection of real-time data from physical environments
-          </div>
-          <div class="q-about-approach__capability">
-            <span class="q-about-approach__capability-num">02</span>
-            Structuring and processing large-scale data streams
-          </div>
-          <div class="q-about-approach__capability">
-            <span class="q-about-approach__capability-num">03</span>
-            Applying AI models to identify patterns, anomalies, and inefficiencies
-          </div>
-          <div class="q-about-approach__capability">
-            <span class="q-about-approach__capability-num">04</span>
-            Generating insights that support proactive and autonomous decision-making
-          </div>
-        </div>
-        <p class="q-about-approach__primary-desc" style="margin-top: 32px; margin-bottom: 0;">
-          This approach allows organizations to transition from reactive processes to systems that anticipate issues and optimize performance continuously.
-        </p>
+    <p class="q-about-section-desc q-about-fade-up" style="margin-bottom: 3rem;">This approach allows organizations to transition from reactive processes to systems that anticipate issues and optimize performance continuously.</p>
+
+    <div class="q-about-approach-pillars q-about-fade-up">
+      <div class="cd-pillar-card">
+        <h4>Modular and Scalable Architecture</h4>
       </div>
-
-      <!-- Secondary Approach Cards -->
-      <div class="q-about-approach__secondary">
-        <div class="cd-approach-card q-about-animate">
-          <h3 class="cd-approach-card__title">Modular and Scalable Architecture</h3>
-        </div>
-        <div class="cd-approach-card q-about-animate q-about-animate-delay-1">
-          <h3 class="cd-approach-card__title">Systematic Innovation and Evolution</h3>
-        </div>
+      <div class="cd-pillar-card">
+        <h4>Systematic Innovation and Evolution</h4>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===== OUR ADVANTAGE ===== -->
-  <section class="q-about-section q-about-advantage">
-    <div class="q-about-container">
-      <div class="q-about-section-header q-about-section-header--center q-about-animate">
-        <span class="q-about-section-label">Strengths</span>
-        <h2 class="q-about-section-title">Our Advantage</h2>
+<!-- ════════════════════════════════════════════════ -->
+<!-- OUR ADVANTAGE -->
+<!-- ════════════════════════════════════════════════ -->
+<section class="q-about-section q-about-advantage">
+  <div class="q-about-section-inner">
+    <div class="q-about-fade-up" style="text-align: center; margin-bottom: 3rem;">
+      <span class="q-about-section-label" style="justify-content: center;">Our Advantage</span>
+      <h2 class="q-about-section-title">What Sets Us Apart</h2>
+    </div>
+
+    <div class="q-about-advantage-grid">
+      <div class="cd-advantage-card q-about-fade-up">
+        <div class="cd-advantage-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3m3 3a3 3 0 1 0 0 6h13.5a3 3 0 1 0 0-6m-16.5-3a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3m-19.5 0a4.5 4.5 0 0 1 .9-2.7L5.737 5.1a3.375 3.375 0 0 1 2.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 0 1 .9 2.7m0 0a3 3 0 0 1-3 3m0 3h.008v.008h-.008v-.008Zm0-6h.008v.008h-.008v-.008ZM6.75 8.25h.008v.008H6.75V8.25Z"/></svg>
+        </div>
+        <h4>Built on Proven IoT Foundations</h4>
+        <p>Aperture AIoT is supported by extensive experience in IoT hardware and system deployment. This foundation ensures that systems are not only technically sound but also practical for real-world use.</p>
+        <ul class="cd-advantage-strengths">
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+            IoT hardware design and deployment
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+            RFID, BLE, GPS, and sensing technologies
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+            Integration of edge devices with cloud-based systems
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+            Global B2B deployment experience
+          </li>
+        </ul>
+        <p style="margin-top: 1rem;">This experience allows for efficient implementation, reduced risk, and faster realization of operational benefits.</p>
       </div>
 
-      <div class="q-about-advantage__grid">
-        <!-- Block 1 -->
-        <div class="cd-advantage-block q-about-animate">
-          <span class="cd-advantage-block__number">01</span>
-          <h3 class="cd-advantage-block__title">Built on Proven IoT Foundations</h3>
-          <p class="cd-advantage-block__desc">Aperture AIoT is supported by extensive experience in IoT hardware and system deployment. This foundation ensures that systems are not only technically sound but also practical for real-world use.</p>
-          <ul class="cd-advantage-block__list">
-            <li class="cd-advantage-block__list-item">
-              <svg class="cd-advantage-block__list-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
-              IoT hardware design and deployment
-            </li>
-            <li class="cd-advantage-block__list-item">
-              <svg class="cd-advantage-block__list-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
-              RFID, BLE, GPS, and sensing technologies
-            </li>
-            <li class="cd-advantage-block__list-item">
-              <svg class="cd-advantage-block__list-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
-              Integration of edge devices with cloud-based systems
-            </li>
-            <li class="cd-advantage-block__list-item">
-              <svg class="cd-advantage-block__list-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
-              Global B2B deployment experience
-            </li>
-          </ul>
-          <p class="cd-advantage-block__desc" style="margin-top: 20px; margin-bottom: 0;">This experience allows for efficient implementation, reduced risk, and faster realization of operational benefits.</p>
+      <div class="cd-advantage-card q-about-fade-up">
+        <div class="cd-advantage-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"/></svg>
         </div>
+        <h4>Real-World Data First</h4>
+        <p>Systems are designed around real-world operational data rather than simulated or theoretical datasets. This ensures that insights and predictions are grounded in actual conditions.</p>
+        <ul class="cd-advantage-strengths">
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+            Direct integration with physical processes
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+            High-quality data collection from sensors and devices
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+            Continuous validation using real operational scenarios
+          </li>
+        </ul>
+        <p style="margin-top: 1rem;">This approach results in AI models that are accurate, context-aware, and immediately applicable.</p>
+      </div>
 
-        <!-- Block 2 -->
-        <div class="cd-advantage-block q-about-animate q-about-animate-delay-1">
-          <span class="cd-advantage-block__number">02</span>
-          <h3 class="cd-advantage-block__title">Real-World Data First</h3>
-          <p class="cd-advantage-block__desc">Systems are designed around real-world operational data rather than simulated or theoretical datasets. This ensures that insights and predictions are grounded in actual conditions.</p>
-          <ul class="cd-advantage-block__list">
-            <li class="cd-advantage-block__list-item">
-              <svg class="cd-advantage-block__list-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
-              Direct integration with physical processes
-            </li>
-            <li class="cd-advantage-block__list-item">
-              <svg class="cd-advantage-block__list-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
-              High-quality data collection from sensors and devices
-            </li>
-            <li class="cd-advantage-block__list-item">
-              <svg class="cd-advantage-block__list-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
-              Continuous validation using real operational scenarios
-            </li>
-          </ul>
-          <p class="cd-advantage-block__desc" style="margin-top: 20px; margin-bottom: 0;">This approach results in AI models that are accurate, context-aware, and immediately applicable.</p>
+      <div class="cd-advantage-card q-about-fade-up">
+        <div class="cd-advantage-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg>
         </div>
+        <h4>Cross-Industry Leverage</h4>
+        <p>The ability to apply solutions across industries enhances both efficiency and innovation. Proven approaches can be reused and refined, reducing development time and increasing reliability.</p>
+        <ul class="cd-advantage-strengths">
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+            Transfer of best practices between industries
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+            Reuse of system architectures and components
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+            Faster scaling of successful implementations
+          </li>
+        </ul>
+        <p style="margin-top: 1rem;">This cross-industry capability supports continuous improvement and expansion.</p>
+      </div>
 
-        <!-- Block 3 -->
-        <div class="cd-advantage-block q-about-animate q-about-animate-delay-2">
-          <span class="cd-advantage-block__number">03</span>
-          <h3 class="cd-advantage-block__title">Cross-Industry Leverage</h3>
-          <p class="cd-advantage-block__desc">The ability to apply solutions across industries enhances both efficiency and innovation. Proven approaches can be reused and refined, reducing development time and increasing reliability.</p>
-          <ul class="cd-advantage-block__list">
-            <li class="cd-advantage-block__list-item">
-              <svg class="cd-advantage-block__list-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
-              Transfer of best practices between industries
-            </li>
-            <li class="cd-advantage-block__list-item">
-              <svg class="cd-advantage-block__list-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
-              Reuse of system architectures and components
-            </li>
-            <li class="cd-advantage-block__list-item">
-              <svg class="cd-advantage-block__list-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
-              Faster scaling of successful implementations
-            </li>
-          </ul>
-          <p class="cd-advantage-block__desc" style="margin-top: 20px; margin-bottom: 0;">This cross-industry capability supports continuous improvement and expansion.</p>
+      <div class="cd-advantage-card q-about-fade-up">
+        <div class="cd-advantage-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg>
         </div>
-
-        <!-- Block 4 -->
-        <div class="cd-advantage-block q-about-animate q-about-animate-delay-3">
-          <span class="cd-advantage-block__number">04</span>
-          <h3 class="cd-advantage-block__title">End-to-End Capability</h3>
-          <p class="cd-advantage-block__desc">Aperture AIoT provides comprehensive support across the full lifecycle of system deployment.</p>
-          <ul class="cd-advantage-block__list">
-            <li class="cd-advantage-block__list-item">
-              <svg class="cd-advantage-block__list-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
-              System design and architecture development
-            </li>
-            <li class="cd-advantage-block__list-item">
-              <svg class="cd-advantage-block__list-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
-              Selection of hardware and technologies
-            </li>
-            <li class="cd-advantage-block__list-item">
-              <svg class="cd-advantage-block__list-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
-              Development of software and AI models
-            </li>
-            <li class="cd-advantage-block__list-item">
-              <svg class="cd-advantage-block__list-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
-              Deployment and system integration
-            </li>
-            <li class="cd-advantage-block__list-item">
-              <svg class="cd-advantage-block__list-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
-              Monitoring, optimization, and scaling
-            </li>
-          </ul>
-          <p class="cd-advantage-block__desc" style="margin-top: 20px; margin-bottom: 0;">This end-to-end approach ensures consistency, reliability, and alignment with operational goals.</p>
-        </div>
+        <h4>End-to-End Capability</h4>
+        <p>Aperture AIoT provides comprehensive support across the full lifecycle of system deployment.</p>
+        <ul class="cd-advantage-strengths">
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+            System design and architecture development
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+            Selection of hardware and technologies
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+            Development of software and AI models
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+            Deployment and system integration
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+            Monitoring, optimization, and scaling
+          </li>
+        </ul>
+        <p style="margin-top: 1rem;">This end-to-end approach ensures consistency, reliability, and alignment with operational goals.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===== OUR VISION ===== -->
-  <section class="q-about-section q-about-vision">
-    <div class="q-about-vision__glow"></div>
-    <div class="q-about-container">
-      <div class="q-about-vision__content">
-        <div class="q-about-section-header q-about-section-header--center q-about-animate">
-          <span class="q-about-section-label">Future</span>
-          <h2 class="q-about-section-title">Our Vision</h2>
+<!-- ════════════════════════════════════════════════ -->
+<!-- VISION -->
+<!-- ════════════════════════════════════════════════ -->
+<section class="q-about-section q-about-vision">
+  <div class="q-about-vision-bg"></div>
+  <div class="q-about-section-inner">
+    <div class="q-about-vision-content">
+      <div class="q-about-fade-up">
+        <span class="q-about-section-label">Our Vision</span>
+        <h2 class="q-about-section-title">The Future of Physical Operations</h2>
+        <div class="q-about-vision-text">
+          <p>The convergence of artificial intelligence and the Internet of Things is reshaping how physical operations are managed. Organizations are moving toward systems that provide continuous visibility, predictive insights, and automated responses.</p>
         </div>
-        <p class="q-about-vision__text q-about-animate">
-          The convergence of artificial intelligence and the Internet of Things is reshaping how physical operations are managed. Organizations are moving toward systems that provide continuous visibility, predictive insights, and automated responses.
-        </p>
-        <p class="q-about-vision__text q-about-animate q-about-animate-delay-1">
-          Aperture AIoT aims to lead this transformation by developing systems that:
-        </p>
-        <div class="q-about-vision__goals q-about-animate q-about-animate-delay-2">
-          <div class="q-about-vision__goal">
-            <svg class="q-about-vision__goal-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        <ul class="q-about-vision-goals">
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z"/></svg>
             Understand and adapt to real-world environments
-          </div>
-          <div class="q-about-vision__goal">
-            <svg class="q-about-vision__goal-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg>
             Provide real-time operational visibility
-          </div>
-          <div class="q-about-vision__goal">
-            <svg class="q-about-vision__goal-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5"/></svg>
             Enable predictive and data-driven decision-making
-          </div>
-          <div class="q-about-vision__goal">
-            <svg class="q-about-vision__goal-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941"/></svg>
             Improve efficiency, safety, and performance across industries
-          </div>
+          </li>
+        </ul>
+      </div>
+      <div class="q-about-fade-up">
+        <div class="q-about-vision-statement">
+          <p>Aperture AIoT aims to lead this transformation by developing systems that understand and adapt to real-world environments, provide real-time operational visibility, enable predictive and data-driven decision-making, and improve efficiency, safety, and performance across industries.</p>
+          <br>
+          <p>The goal is to establish a new standard for managing physical operations, where systems not only collect data but actively contribute to decision-making and optimization.</p>
         </div>
-        <p class="q-about-vision__bottom q-about-animate q-about-animate-delay-3">
-          The goal is to establish a new standard for managing physical operations, where systems not only collect data but actively contribute to decision-making and optimization.
-        </p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===== WORK WITH US ===== -->
-  <section class="q-about-section q-about-workwithus">
-    <div class="q-about-container">
-      <div class="q-about-section-header q-about-section-header--center q-about-animate">
-        <span class="q-about-section-label">Collaborate</span>
-        <h2 class="q-about-section-title">Work With Us</h2>
-        <p class="q-about-section-desc">Aperture AIoT collaborates with organizations seeking to improve their operations through intelligent systems.</p>
+<!-- ════════════════════════════════════════════════ -->
+<!-- WORK WITH US -->
+<!-- ════════════════════════════════════════════════ -->
+<section class="q-about-section q-about-workwithus">
+  <div class="q-about-section-inner">
+    <div class="q-about-workwithus-header q-about-fade-up">
+      <span class="q-about-section-label" style="justify-content: center;">Work With Us</span>
+      <h2 class="q-about-section-title">Partner With Aperture AIoT</h2>
+      <p class="q-about-section-desc">Aperture AIoT collaborates with organizations seeking to improve their operations through intelligent systems.</p>
+    </div>
+
+    <div class="q-about-workwithus-grid">
+      <div class="cd-engage-card q-about-fade-up">
+        <h4>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z"/></svg>
+          Who We Work With
+        </h4>
+        <ul class="cd-engage-list">
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+            Enterprises seeking advanced operational intelligence
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+            Industrial organizations deploying AI + IoT systems
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+            Institutions managing large-scale facilities
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+            Government and public-sector organizations modernizing infrastructure
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+            Technology and implementation partners
+          </li>
+        </ul>
       </div>
 
-      <div class="q-about-workwithus__grid">
-        <div class="cd-engage-card q-about-animate">
-          <h3 class="cd-engage-card__title">Who We Work With</h3>
-          <ul class="cd-engage-card__list">
-            <li class="cd-engage-card__list-item">
-              <svg class="cd-engage-card__list-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
-              Enterprises seeking advanced operational intelligence
-            </li>
-            <li class="cd-engage-card__list-item">
-              <svg class="cd-engage-card__list-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
-              Industrial organizations deploying AI + IoT systems
-            </li>
-            <li class="cd-engage-card__list-item">
-              <svg class="cd-engage-card__list-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
-              Institutions managing large-scale facilities
-            </li>
-            <li class="cd-engage-card__list-item">
-              <svg class="cd-engage-card__list-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
-              Government and public-sector organizations modernizing infrastructure
-            </li>
-            <li class="cd-engage-card__list-item">
-              <svg class="cd-engage-card__list-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
-              Technology and implementation partners
-            </li>
-          </ul>
-        </div>
-
-        <div class="cd-engage-card q-about-animate q-about-animate-delay-1">
-          <h3 class="cd-engage-card__title">How We Engage</h3>
-          <p class="cd-advantage-block__desc" style="margin-bottom: 20px;">Engagement models are designed to support organizations at different stages of adoption:</p>
-          <ul class="cd-engage-card__list">
-            <li class="cd-engage-card__list-item">
-              <svg class="cd-engage-card__list-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
-              Consulting and system design
-            </li>
-            <li class="cd-engage-card__list-item">
-              <svg class="cd-engage-card__list-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
-              Pilot programs and proof-of-concept deployments
-            </li>
-            <li class="cd-engage-card__list-item">
-              <svg class="cd-engage-card__list-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
-              Full-scale implementation
-            </li>
-            <li class="cd-engage-card__list-item">
-              <svg class="cd-engage-card__list-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
-              Long-term partnerships for optimization and expansion
-            </li>
-          </ul>
-        </div>
-
-        <div class="cd-engage-card q-about-animate q-about-animate-delay-2">
-          <h3 class="cd-engage-card__title">Our Commitment</h3>
-          <p class="cd-advantage-block__desc" style="margin-bottom: 20px;">Every engagement is guided by a commitment to delivering measurable results and long-term value.</p>
-          <ul class="cd-engage-card__list">
-            <li class="cd-engage-card__list-item">
-              <svg class="cd-engage-card__list-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
-              Practical solutions designed for real environments
-            </li>
-            <li class="cd-engage-card__list-item">
-              <svg class="cd-engage-card__list-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
-              Measurable improvements in efficiency and performance
-            </li>
-            <li class="cd-engage-card__list-item">
-              <svg class="cd-engage-card__list-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
-              Systems that scale with operational growth
-            </li>
-            <li class="cd-engage-card__list-item">
-              <svg class="cd-engage-card__list-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
-              Continuous innovation based on data and feedback
-            </li>
-          </ul>
-        </div>
+      <div class="cd-engage-card q-about-fade-up">
+        <h4>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"/></svg>
+          How We Engage
+        </h4>
+        <p style="color: var(--q-about-text-muted); font-size: 0.875rem; line-height: 1.7; margin-bottom: 1rem;">Engagement models are designed to support organizations at different stages of adoption:</p>
+        <ul class="cd-engage-list">
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+            Consulting and system design
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+            Pilot programs and proof-of-concept deployments
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+            Full-scale implementation
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+            Long-term partnerships for optimization and expansion
+          </li>
+        </ul>
       </div>
 
-      <!-- CTA -->
-      <div class="q-about-commitment q-about-animate">
-        <h3 class="q-about-commitment__title">Ready to Transform Your Operations?</h3>
-        <p class="q-about-commitment__subtitle">
-          Organizations interested in applying AI + IoT systems to their operations are encouraged to connect with Aperture AIoT to explore collaboration opportunities.
-        </p>
-        <a href="#" class="q-about-hero__cta">
-          Join With Us
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-        </a>
+      <div class="cd-engage-card q-about-fade-up">
+        <h4>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/></svg>
+          Our Commitment
+        </h4>
+        <p style="color: var(--q-about-text-muted); font-size: 0.875rem; line-height: 1.7; margin-bottom: 1rem;">Every engagement is guided by a commitment to delivering measurable results and long-term value.</p>
+        <ul class="cd-engage-list">
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+            Practical solutions designed for real environments
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+            Measurable improvements in efficiency and performance
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+            Systems that scale with operational growth
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+            Continuous innovation based on data and feedback
+          </li>
+        </ul>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===== FOOTER ===== -->
-  <footer class="q-about-footer">
-    <div class="q-about-container">
-      <div class="q-about-footer__layout">
-        <div>
-          <div class="q-about-footer__brand-name">Aperture</div>
-          <p class="q-about-footer__brand-desc">
-            Aperture AIoT operates at the intersection of physical systems and artificial intelligence. The platforms capture data from real environments, convert that data into structured intelligence, and use it to build focused, scalable companies that solve clearly defined operational problems.
-          </p>
-        </div>
-        <div>
-          <h4 class="q-about-footer__col-title">Useful Links</h4>
-          <ul class="q-about-footer__links">
-            <li><a href="#" class="q-about-footer__link">AIoT Systems</a></li>
-            <li><a href="#" class="q-about-footer__link">AIoT Core Platforms</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="q-about-footer__col-title">Links</h4>
-          <ul class="q-about-footer__links">
-            <li><a href="#" class="q-about-footer__link">Home</a></li>
-            <li><a href="#" class="q-about-footer__link">Contact Us</a></li>
-            <li><a href="#" class="q-about-footer__link">About us</a></li>
-          </ul>
-        </div>
+<!-- ════════════════════════════════════════════════ -->
+<!-- CTA -->
+<!-- ════════════════════════════════════════════════ -->
+<section class="q-about-cta">
+  <div class="q-about-cta-bg"></div>
+  <div class="q-about-cta-inner q-about-fade-up">
+    <span class="q-about-section-label" style="justify-content: center;">Get Started</span>
+    <h3>Ready to Transform Your Operations?</h3>
+    <p>Organizations interested in applying AI + IoT systems to their operations are encouraged to connect with Aperture AIoT to explore collaboration opportunities.</p>
+    <a href="#" class="q-about-btn-primary">
+      Join With Us
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- FOOTER -->
+<!-- ════════════════════════════════════════════════ -->
+<footer class="q-about-footer">
+  <div class="q-about-footer-inner">
+    <div class="q-about-footer-top">
+      <div class="q-about-footer-brand">
+        <a href="#" class="q-about-logo">Aperture<span>.</span></a>
+        <p>Aperture AIoT operates at the intersection of physical systems and artificial intelligence. The platforms capture data from real environments, convert that data into structured intelligence, and use it to build focused, scalable companies that solve clearly defined operational problems.</p>
       </div>
-      <div class="q-about-footer__bottom">
-        Copyright © Aperture AIoT
+      <div class="q-about-footer-col">
+        <h5>Useful Links</h5>
+        <ul>
+          <li><a href="#">AIoT Systems</a></li>
+          <li><a href="#">AIoT Core Platforms</a></li>
+        </ul>
+      </div>
+      <div class="q-about-footer-col">
+        <h5>Links</h5>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">About us</a></li>
+        </ul>
       </div>
     </div>
-  </footer>
-
-</div>
+    <div class="q-about-footer-bottom">
+      Copyright © Aperture AIoT
+    </div>
+  </div>
+</footer>
 
 <script>
 (function() {
-  const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('q-about-visible');
-        observer.unobserve(entry.target);
+  // Nav scroll effect
+  var nav = document.querySelector('.q-about-nav');
+  function handleNavScroll() {
+    if (window.scrollY > 60) {
+      nav.classList.add('is-scrolled');
+    } else {
+      nav.classList.remove('is-scrolled');
+    }
+  }
+  window.addEventListener('scroll', handleNavScroll, { passive: true });
+  handleNavScroll();
+
+  // Mobile menu toggle
+  var toggle = document.querySelector('.q-about-mobile-toggle');
+  var navLinks = document.querySelector('.q-about-nav-links');
+  if (toggle && navLinks) {
+    toggle.addEventListener('click', function() {
+      navLinks.classList.toggle('is-open');
+    });
+    navLinks.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        navLinks.classList.remove('is-open');
+      });
+    });
+  }
+
+  // Scroll-based fade-in animations
+  var fadeEls = document.querySelectorAll('.q-about-fade-up');
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+    fadeEls.forEach(function(el) {
+      observer.observe(el);
+    });
+  } else {
+    fadeEls.forEach(function(el) {
+      el.classList.add('is-visible');
+    });
+  }
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+    anchor.addEventListener('click', function(e) {
+      var target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     });
-  }, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -40px 0px'
-  });
-
-  document.querySelectorAll('.q-about-animate').forEach(function(el) {
-    observer.observe(el);
   });
 })();
 </script>
