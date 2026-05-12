@@ -1,0 +1,2123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aperture AIoT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<style>
+:root {
+  --ap-primary: #0a0f1e;
+  --ap-secondary: #111827;
+  --ap-accent: #3b82f6;
+  --ap-accent-light: #60a5fa;
+  --ap-accent-glow: rgba(59, 130, 246, 0.15);
+  --ap-cyan: #06b6d4;
+  --ap-violet: #8b5cf6;
+  --ap-white: #ffffff;
+  --ap-gray-50: #f8fafc;
+  --ap-gray-100: #f1f5f9;
+  --ap-gray-200: #e2e8f0;
+  --ap-gray-300: #cbd5e1;
+  --ap-gray-400: #94a3b8;
+  --ap-gray-500: #64748b;
+  --ap-gray-600: #475569;
+  --ap-gray-700: #334155;
+  --ap-gray-800: #1e293b;
+  --ap-gray-900: #0f172a;
+  --ap-radius: 12px;
+  --ap-radius-lg: 20px;
+  --ap-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--ap-gray-700);
+  background: var(--ap-white);
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Navigation ── */
+.q-home-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 0 24px;
+  transition: var(--ap-transition);
+  background: rgba(10, 15, 30, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.q-home-nav.scrolled {
+  background: rgba(10, 15, 30, 0.95);
+  box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+}
+
+.q-home-nav-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+
+.q-home-nav-logo {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ap-white);
+  text-decoration: none;
+  letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.q-home-nav-logo svg {
+  width: 32px;
+  height: 32px;
+}
+
+.q-home-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  list-style: none;
+}
+
+.q-home-nav-links a {
+  color: var(--ap-gray-300);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: var(--ap-transition);
+  position: relative;
+}
+
+.q-home-nav-links a:hover {
+  color: var(--ap-white);
+}
+
+.q-home-nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--ap-accent);
+  transition: var(--ap-transition);
+  border-radius: 2px;
+}
+
+.q-home-nav-links a:hover::after {
+  width: 100%;
+}
+
+.q-home-nav-cta {
+  background: var(--ap-accent) !important;
+  color: var(--ap-white) !important;
+  padding: 10px 24px !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  transition: var(--ap-transition);
+}
+
+.q-home-nav-cta:hover {
+  background: #2563eb !important;
+  transform: translateY(-1px);
+}
+
+.q-home-nav-cta::after { display: none !important; }
+
+.q-home-mobile-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  background: none;
+  border: none;
+}
+
+.q-home-mobile-toggle span {
+  width: 24px;
+  height: 2px;
+  background: var(--ap-white);
+  border-radius: 2px;
+  transition: var(--ap-transition);
+}
+
+/* ── Shared Section Styles ── */
+.q-home-section {
+  padding: 100px 24px;
+  position: relative;
+}
+
+.q-home-section-dark {
+  background: var(--ap-primary);
+  color: var(--ap-gray-300);
+}
+
+.q-home-section-gray {
+  background: var(--ap-gray-50);
+}
+
+.q-home-section-gradient {
+  background: linear-gradient(135deg, var(--ap-primary) 0%, #131b2e 50%, #0d1425 100%);
+  color: var(--ap-gray-300);
+}
+
+.q-home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.q-home-container-sm {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.q-home-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--ap-accent);
+  margin-bottom: 16px;
+}
+
+.q-home-label-light {
+  color: var(--ap-accent-light);
+}
+
+.q-home-label-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ap-accent);
+  display: inline-block;
+}
+
+.q-home-title {
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -1.5px;
+  color: var(--ap-gray-900);
+  margin-bottom: 20px;
+}
+
+.q-home-title-white {
+  color: var(--ap-white);
+}
+
+.q-home-title-gradient {
+  background: linear-gradient(135deg, var(--ap-white) 0%, var(--ap-accent-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.q-home-subtitle {
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--ap-gray-500);
+  max-width: 680px;
+}
+
+.q-home-subtitle-light {
+  color: var(--ap-gray-400);
+}
+
+.q-home-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--ap-transition);
+  cursor: pointer;
+  border: none;
+}
+
+.q-home-btn-primary {
+  background: var(--ap-accent);
+  color: var(--ap-white);
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+}
+
+.q-home-btn-primary:hover {
+  background: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.4);
+}
+
+.q-home-btn-outline {
+  background: transparent;
+  color: var(--ap-white);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.q-home-btn-outline:hover {
+  border-color: var(--ap-accent);
+  color: var(--ap-accent-light);
+  background: rgba(59, 130, 246, 0.05);
+}
+
+.q-home-btn-dark {
+  background: var(--ap-gray-900);
+  color: var(--ap-white);
+}
+
+.q-home-btn-dark:hover {
+  background: var(--ap-gray-800);
+  transform: translateY(-2px);
+}
+
+/* ── Hero ── */
+.q-home-hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ap-primary);
+  position: relative;
+  overflow: hidden;
+  padding: 120px 24px 100px;
+}
+
+.q-home-hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(59, 130, 246, 0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 80% 20%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 40% at 20% 80%, rgba(6, 182, 212, 0.06) 0%, transparent 50%);
+}
+
+.q-home-hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 70%);
+}
+
+.q-home-hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.4;
+  animation: q-home-float 8s ease-in-out infinite;
+}
+
+.q-home-hero-orb-1 {
+  width: 400px;
+  height: 400px;
+  background: var(--ap-accent);
+  top: -100px;
+  right: -100px;
+  opacity: 0.08;
+}
+
+.q-home-hero-orb-2 {
+  width: 300px;
+  height: 300px;
+  background: var(--ap-violet);
+  bottom: -50px;
+  left: -50px;
+  opacity: 0.06;
+  animation-delay: 4s;
+}
+
+@keyframes q-home-float {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(20px, -20px); }
+}
+
+.q-home-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 860px;
+}
+
+.q-home-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  padding: 8px 20px;
+  border-radius: 40px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ap-accent-light);
+  margin-bottom: 32px;
+}
+
+.q-home-hero-title {
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -2px;
+  color: var(--ap-white);
+  margin-bottom: 24px;
+}
+
+.q-home-hero-title span {
+  background: linear-gradient(135deg, var(--ap-accent-light), var(--ap-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.q-home-hero-desc {
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--ap-gray-400);
+  max-width: 700px;
+  margin: 0 auto 40px;
+}
+
+.q-home-hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.q-home-hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  margin-top: 72px;
+  padding-top: 48px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.q-home-hero-stat {
+  text-align: center;
+}
+
+.q-home-hero-stat-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--ap-white);
+  letter-spacing: -1px;
+}
+
+.q-home-hero-stat-label {
+  font-size: 13px;
+  color: var(--ap-gray-500);
+  margin-top: 4px;
+}
+
+/* ── About ── */
+.q-home-about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.q-home-about-visual {
+  position: relative;
+  border-radius: var(--ap-radius-lg);
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  background: linear-gradient(135deg, var(--ap-gray-900), var(--ap-gray-800));
+}
+
+.q-home-about-visual-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at 30% 40%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
+}
+
+.q-home-about-visual-icon {
+  width: 120px;
+  height: 120px;
+  border-radius: 24px;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+}
+
+.q-home-about-visual-icon svg {
+  width: 56px;
+  height: 56px;
+  color: var(--ap-accent-light);
+}
+
+.q-home-about-nodes {
+  position: absolute;
+  inset: 0;
+}
+
+.q-home-about-node {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ap-accent);
+  opacity: 0.4;
+  animation: q-home-pulse 3s ease-in-out infinite;
+}
+
+.q-home-about-node:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; }
+.q-home-about-node:nth-child(2) { top: 35%; right: 20%; animation-delay: 1s; }
+.q-home-about-node:nth-child(3) { bottom: 25%; left: 25%; animation-delay: 2s; }
+.q-home-about-node:nth-child(4) { bottom: 40%; right: 15%; animation-delay: 0.5s; }
+.q-home-about-node:nth-child(5) { top: 55%; left: 50%; animation-delay: 1.5s; }
+
+@keyframes q-home-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.4; }
+  50% { transform: scale(1.8); opacity: 0.8; }
+}
+
+/* ── Traction ── */
+.q-home-traction-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.cd-traction-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--ap-radius);
+  padding: 32px;
+  transition: var(--ap-transition);
+}
+
+.cd-traction-card:hover {
+  border-color: rgba(59, 130, 246, 0.2);
+  background: rgba(59, 130, 246, 0.03);
+  transform: translateY(-4px);
+}
+
+.cd-traction-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(59, 130, 246, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.cd-traction-card-icon svg {
+  width: 24px;
+  height: 24px;
+  color: var(--ap-accent-light);
+}
+
+.cd-traction-card p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ap-gray-400);
+}
+
+/* ── What This Enables ── */
+.q-home-enables-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 48px;
+}
+
+.cd-enable-card {
+  background: var(--ap-white);
+  border: 1px solid var(--ap-gray-200);
+  border-radius: var(--ap-radius);
+  padding: 36px;
+  transition: var(--ap-transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.cd-enable-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ap-accent), var(--ap-cyan));
+  opacity: 0;
+  transition: var(--ap-transition);
+}
+
+.cd-enable-card:hover {
+  border-color: var(--ap-accent);
+  box-shadow: 0 12px 40px rgba(59, 130, 246, 0.08);
+  transform: translateY(-4px);
+}
+
+.cd-enable-card:hover::before {
+  opacity: 1;
+}
+
+.cd-enable-card-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--ap-accent-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.cd-enable-card-icon svg {
+  width: 26px;
+  height: 26px;
+  color: var(--ap-accent);
+}
+
+.cd-enable-card p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ap-gray-600);
+}
+
+/* ── How It Works ── */
+.q-home-how-pipeline {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 56px;
+  position: relative;
+}
+
+.q-home-how-pipeline::before {
+  content: '';
+  position: absolute;
+  top: 60px;
+  left: 15%;
+  right: 15%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--ap-accent), var(--ap-cyan), var(--ap-violet));
+  opacity: 0.3;
+}
+
+.cd-pipeline-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--ap-radius-lg);
+  padding: 40px 32px;
+  position: relative;
+  transition: var(--ap-transition);
+}
+
+.cd-pipeline-card:hover {
+  border-color: rgba(59, 130, 246, 0.25);
+  background: rgba(59, 130, 246, 0.03);
+  transform: translateY(-6px);
+}
+
+.cd-pipeline-step {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--ap-accent), var(--ap-cyan));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ap-white);
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.cd-pipeline-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ap-white);
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+
+.cd-pipeline-card > p {
+  font-size: 14px;
+  color: var(--ap-gray-400);
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
+
+.cd-pipeline-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.cd-pipeline-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--ap-gray-400);
+  line-height: 1.6;
+}
+
+.cd-pipeline-list li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ap-accent);
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+
+.cd-pipeline-footer {
+  font-size: 13px;
+  color: var(--ap-gray-500);
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  font-style: italic;
+}
+
+/* ── Why This Approach ── */
+.q-home-why-box {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(6, 182, 212, 0.05));
+  border: 1px solid rgba(59, 130, 246, 0.15);
+  border-radius: var(--ap-radius-lg);
+  padding: 56px;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.q-home-why-box p {
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--ap-gray-400);
+}
+
+.q-home-why-box p + p {
+  margin-top: 16px;
+  color: var(--ap-gray-300);
+  font-weight: 500;
+}
+
+/* ── Platform Capabilities ── */
+.q-home-platform-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.cd-platform-card {
+  background: var(--ap-white);
+  border: 1px solid var(--ap-gray-200);
+  border-radius: var(--ap-radius);
+  padding: 36px;
+  transition: var(--ap-transition);
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.cd-platform-card:hover {
+  border-color: var(--ap-accent);
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.08);
+  transform: translateY(-4px);
+}
+
+.cd-platform-card-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cd-platform-card-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.cd-platform-card-icon-blue {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--ap-accent);
+}
+
+.cd-platform-card-icon-cyan {
+  background: rgba(6, 182, 212, 0.1);
+  color: var(--ap-cyan);
+}
+
+.cd-platform-card-icon-violet {
+  background: rgba(139, 92, 246, 0.1);
+  color: var(--ap-violet);
+}
+
+.cd-platform-card-icon-green {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+}
+
+.cd-platform-card h3 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ap-gray-900);
+  margin-bottom: 8px;
+  letter-spacing: -0.3px;
+}
+
+.cd-platform-card p {
+  font-size: 14px;
+  color: var(--ap-gray-500);
+  line-height: 1.7;
+}
+
+/* ── Integrated System Intelligence ── */
+.q-home-integrated-box {
+  background: var(--ap-gray-900);
+  border-radius: var(--ap-radius-lg);
+  padding: 48px;
+  margin-top: 48px;
+  color: var(--ap-white);
+}
+
+.q-home-integrated-box h3 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  letter-spacing: -0.5px;
+}
+
+.q-home-integrated-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.q-home-integrated-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 15px;
+  color: var(--ap-gray-300);
+  line-height: 1.6;
+}
+
+.q-home-integrated-list li svg {
+  width: 20px;
+  height: 20px;
+  color: var(--ap-accent-light);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.q-home-integrated-note {
+  font-size: 14px;
+  color: var(--ap-gray-500);
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ── Systems Portfolio ── */
+.q-home-systems-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 48px;
+}
+
+.cd-system-card {
+  border-radius: var(--ap-radius-lg);
+  padding: 40px 32px;
+  transition: var(--ap-transition);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.02);
+}
+
+.cd-system-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+}
+
+.cd-system-card-blue::after { background: linear-gradient(90deg, var(--ap-accent), var(--ap-accent-light)); }
+.cd-system-card-cyan::after { background: linear-gradient(90deg, var(--ap-cyan), #22d3ee); }
+.cd-system-card-violet::after { background: linear-gradient(90deg, var(--ap-violet), #a78bfa); }
+
+.cd-system-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(59, 130, 246, 0.2);
+  background: rgba(59, 130, 246, 0.04);
+}
+
+.cd-system-card h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ap-white);
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.cd-system-card-sub {
+  font-size: 13px;
+  color: var(--ap-accent-light);
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.cd-system-card-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cd-system-card-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--ap-gray-400);
+  line-height: 1.6;
+}
+
+.cd-system-card-features li svg {
+  width: 18px;
+  height: 18px;
+  color: var(--ap-accent-light);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ── Dev Model ── */
+.q-home-devmodel {
+  margin-top: 56px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--ap-radius-lg);
+  padding: 48px;
+}
+
+.q-home-devmodel h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ap-white);
+  margin-bottom: 8px;
+}
+
+.q-home-devmodel > p {
+  font-size: 15px;
+  color: var(--ap-gray-400);
+  margin-bottom: 20px;
+}
+
+.q-home-devmodel-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.q-home-devmodel-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--ap-gray-300);
+  padding: 16px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.q-home-devmodel-list li svg {
+  width: 18px;
+  height: 18px;
+  color: var(--ap-accent-light);
+  flex-shrink: 0;
+}
+
+.q-home-devmodel-note {
+  font-size: 14px;
+  color: var(--ap-gray-500);
+  margin-top: 20px;
+  font-style: italic;
+}
+
+/* ── Industries ── */
+.q-home-industries-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.cd-industry-card {
+  background: var(--ap-white);
+  border: 1px solid var(--ap-gray-200);
+  border-radius: var(--ap-radius);
+  padding: 32px;
+  transition: var(--ap-transition);
+  text-align: center;
+}
+
+.cd-industry-card:hover {
+  border-color: var(--ap-accent);
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.08);
+  transform: translateY(-4px);
+}
+
+.cd-industry-card-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cd-industry-card-icon svg {
+  width: 30px;
+  height: 30px;
+}
+
+.cd-industry-card h3 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ap-gray-900);
+  margin-bottom: 12px;
+}
+
+.cd-industry-card-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cd-industry-card-list li {
+  font-size: 13px;
+  color: var(--ap-gray-500);
+  line-height: 1.6;
+}
+
+/* ── Cross Industry ── */
+.q-home-cross-industry {
+  background: linear-gradient(135deg, var(--ap-gray-900), var(--ap-gray-800));
+  border-radius: var(--ap-radius-lg);
+  padding: 48px;
+  margin-top: 48px;
+}
+
+.q-home-cross-industry h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ap-white);
+  margin-bottom: 8px;
+}
+
+.q-home-cross-industry > p {
+  font-size: 15px;
+  color: var(--ap-gray-400);
+  margin-bottom: 24px;
+}
+
+.q-home-cross-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.q-home-cross-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--ap-gray-300);
+}
+
+.q-home-cross-list li svg {
+  width: 18px;
+  height: 18px;
+  color: var(--ap-accent-light);
+  flex-shrink: 0;
+}
+
+/* ── Standards ── */
+.q-home-standards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 32px;
+}
+
+.cd-standard-tag {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ap-gray-400);
+  transition: var(--ap-transition);
+  text-align: center;
+}
+
+.cd-standard-tag:hover {
+  border-color: rgba(59, 130, 246, 0.3);
+  color: var(--ap-accent-light);
+  background: rgba(59, 130, 246, 0.05);
+}
+
+/* ── Top Players ── */
+.q-home-players-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.cd-player-tag {
+  background: var(--ap-white);
+  border: 1px solid var(--ap-gray-200);
+  border-radius: 8px;
+  padding: 14px 18px;
+  font-size: 13px;
+  color: var(--ap-gray-600);
+  transition: var(--ap-transition);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cd-player-tag:hover {
+  border-color: var(--ap-accent);
+  color: var(--ap-accent);
+}
+
+.cd-player-tag::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--ap-accent);
+  flex-shrink: 0;
+}
+
+/* ── Case Studies ── */
+.q-home-cases-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 48px;
+}
+
+.q-home-cases-column h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ap-white);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.q-home-cases-column h3 .q-flag {
+  font-size: 20px;
+}
+
+.cd-case-item {
+  padding: 14px 18px;
+  border-left: 2px solid rgba(255,255,255,0.08);
+  font-size: 14px;
+  color: var(--ap-gray-400);
+  margin-bottom: 6px;
+  transition: var(--ap-transition);
+  cursor: default;
+}
+
+.cd-case-item:hover {
+  border-left-color: var(--ap-accent);
+  color: var(--ap-accent-light);
+  background: rgba(59, 130, 246, 0.03);
+  padding-left: 22px;
+}
+
+/* ── CTA ── */
+.q-home-cta-section {
+  text-align: center;
+  padding: 120px 24px;
+  background: linear-gradient(135deg, var(--ap-primary) 0%, #0e1a33 50%, var(--ap-primary) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.q-home-cta-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 60%);
+}
+
+.q-home-cta-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.q-home-cta-title {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 800;
+  color: var(--ap-white);
+  margin-bottom: 20px;
+  letter-spacing: -1.5px;
+  line-height: 1.15;
+}
+
+.q-home-cta-desc {
+  font-size: 17px;
+  color: var(--ap-gray-400);
+  margin-bottom: 36px;
+  line-height: 1.8;
+}
+
+.q-home-cta-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.q-home-cta-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--ap-gray-300);
+  transition: var(--ap-transition);
+}
+
+.q-home-cta-tag:hover {
+  border-color: var(--ap-accent);
+  color: var(--ap-accent-light);
+}
+
+.q-home-cta-tag svg {
+  width: 16px;
+  height: 16px;
+  color: var(--ap-accent-light);
+}
+
+.q-home-cta-note {
+  font-size: 14px;
+  color: var(--ap-gray-500);
+  max-width: 600px;
+  margin: 24px auto 0;
+  line-height: 1.8;
+}
+
+/* ── Footer ── */
+.q-home-footer {
+  background: var(--ap-gray-900);
+  padding: 64px 24px 32px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.q-home-footer-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 48px;
+}
+
+.q-home-footer-brand h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ap-white);
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+}
+
+.q-home-footer-brand p {
+  font-size: 14px;
+  color: var(--ap-gray-500);
+  line-height: 1.8;
+  max-width: 400px;
+}
+
+.q-home-footer-col h4 {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--ap-gray-400);
+  margin-bottom: 20px;
+}
+
+.q-home-footer-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.q-home-footer-col ul a {
+  color: var(--ap-gray-500);
+  text-decoration: none;
+  font-size: 14px;
+  transition: var(--ap-transition);
+}
+
+.q-home-footer-col ul a:hover {
+  color: var(--ap-accent-light);
+}
+
+.q-home-footer-bottom {
+  max-width: 1200px;
+  margin: 48px auto 0;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  text-align: center;
+  font-size: 13px;
+  color: var(--ap-gray-600);
+}
+
+/* ── Animations ── */
+.q-home-fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.q-home-fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .q-home-about-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .q-home-how-pipeline {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .q-home-how-pipeline::before { display: none; }
+
+  .q-home-industries-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .q-home-systems-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .q-home-cases-section {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .q-home-footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .q-home-devmodel-list {
+    grid-template-columns: 1fr;
+  }
+
+  .q-home-standards-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .q-home-players-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .q-home-section {
+    padding: 72px 20px;
+  }
+
+  .q-home-nav-links { display: none; }
+
+  .q-home-mobile-toggle { display: flex; }
+
+  .q-home-nav-links.active {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: rgba(10, 15, 30, 0.98);
+    backdrop-filter: blur(20px);
+    padding: 24px;
+    gap: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .q-home-traction-grid,
+  .q-home-enables-grid,
+  .q-home-platform-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .q-home-industries-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .q-home-hero-stats {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .q-home-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .q-home-hero-actions .q-home-btn {
+    justify-content: center;
+  }
+
+  .q-home-footer-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .q-home-why-box {
+    padding: 36px 24px;
+  }
+
+  .q-home-integrated-box,
+  .q-home-cross-industry,
+  .q-home-devmodel {
+    padding: 32px 24px;
+  }
+
+  .q-home-standards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .q-home-players-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cd-platform-card {
+    flex-direction: column;
+  }
+
+  .q-home-cta-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+@media (max-width: 480px) {
+  .q-home-standards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<!-- Navigation -->
+<nav class="q-home-nav">
+  <div class="q-home-nav-inner">
+    <a href="#" class="q-home-nav-logo">
+      <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="16" r="6" fill="currentColor" opacity="0.3"/><line x1="16" y1="2" x2="16" y2="10" stroke="currentColor" stroke-width="2"/><line x1="16" y1="22" x2="16" y2="30" stroke="currentColor" stroke-width="2"/><line x1="2" y1="16" x2="10" y2="16" stroke="currentColor" stroke-width="2"/><line x1="22" y1="16" x2="30" y2="16" stroke="currentColor" stroke-width="2"/></svg>
+      Aperture
+    </a>
+    <ul class="q-home-nav-links">
+      <li><a href="http://dev-intern.local/home-3/">Home</a></li>
+      <li><a href="http://dev-intern.local/core/">AIoT Core Platforms</a></li>
+      <li><a href="http://dev-intern.local/home-2/">About</a></li>
+    </ul>
+    <button class="q-home-mobile-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="q-home-hero">
+  <div class="q-home-hero-bg"></div>
+  <div class="q-home-hero-grid"></div>
+  <div class="q-home-hero-orb q-home-hero-orb-1"></div>
+  <div class="q-home-hero-orb q-home-hero-orb-2"></div>
+  <div class="q-home-hero-content q-home-fade-up">
+    <div class="q-home-hero-badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      From IoT Data to AI-Native Companies
+    </div>
+    <h1 class="q-home-hero-title">Transforming Real-World Signals into <span>Intelligence and Ventures</span></h1>
+    <p class="q-home-hero-desc">Aperture AIoT operates at the intersection of physical systems and artificial intelligence. The platforms capture data from real environments, convert that data into structured intelligence, and use it to build focused, scalable companies that solve clearly defined operational problems.</p>
+    <div class="q-home-hero-actions">
+      <a href="#" class="q-home-btn q-home-btn-primary">
+        Explore Platform
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#" class="q-home-btn q-home-btn-outline">
+        View Systems
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- About / Physical Data -->
+<section class="q-home-section q-home-section-gray">
+  <div class="q-home-container">
+    <div class="q-home-about-grid">
+      <div class="q-home-about-visual">
+        <div class="q-home-about-visual-inner">
+          <div class="q-home-about-visual-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+        </div>
+        <div class="q-home-about-nodes">
+          <div class="q-home-about-node"></div>
+          <div class="q-home-about-node"></div>
+          <div class="q-home-about-node"></div>
+          <div class="q-home-about-node"></div>
+          <div class="q-home-about-node"></div>
+        </div>
+      </div>
+      <div class="q-home-fade-up">
+        <span class="q-home-label"><span class="q-home-label-dot"></span>The Vision</span>
+        <h2 class="q-home-title">Turning Physical Data into Scalable Innovation</h2>
+        <p class="q-home-subtitle" style="margin-bottom: 20px;">Physical industries generate vast amounts of data through sensors, machines, and operational systems. Much of this data remains underutilized due to fragmentation and lack of real-time interpretation.</p>
+        <p class="q-home-subtitle" style="margin-bottom: 20px;">Aperture AIoT connects data capture, intelligence, and execution into a unified system. Operational signals evolve into insights, and insights evolve into companies.</p>
+        <p class="q-home-subtitle">This creates a repeatable model for Systems creation based on real demand rather than speculation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Traction And Validation -->
+<section class="q-home-section q-home-section-dark">
+  <div class="q-home-container">
+    <div class="q-home-fade-up" style="text-align:center; max-width:700px; margin:0 auto;">
+      <span class="q-home-label q-home-label-light"><span class="q-home-label-dot"></span>Traction And Validation</span>
+      <h2 class="q-home-title q-home-title-white">Aperture AIoT is built on real deployments and continuous industry engagement. The Platform reflect patterns observed across multiple operational environments.</h2>
+    </div>
+    <div class="q-home-traction-grid q-home-fade-up">
+      <div class="cd-traction-card">
+        <div class="cd-traction-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <p>Hundreds of deployments across industrial and commercial environments</p>
+      </div>
+      <div class="cd-traction-card">
+        <div class="cd-traction-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+        </div>
+        <p>Cross-industry applications spanning manufacturing, healthcare, logistics, and more</p>
+      </div>
+      <div class="cd-traction-card">
+        <div class="cd-traction-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </div>
+        <p>Continuous inbound inquiries from organizations seeking solutions</p>
+      </div>
+    </div>
+    <p class="q-home-fade-up" style="text-align:center; color: var(--ap-gray-500); font-size: 14px; margin-top: 32px;">Each deployment contributes data and insight, strengthening the platform and informing future Systems.</p>
+  </div>
+</section>
+
+<!-- What This Enables -->
+<section class="q-home-section">
+  <div class="q-home-container">
+    <div class="q-home-fade-up" style="text-align:center; max-width:600px; margin:0 auto;">
+      <span class="q-home-label"><span class="q-home-label-dot"></span>Capabilities</span>
+      <h2 class="q-home-title">What This Enables</h2>
+      <p class="q-home-subtitle" style="margin:0 auto;">Organizations engaging with Aperture AIoT benefit from a system grounded in real-world use cases.</p>
+    </div>
+    <div class="q-home-enables-grid q-home-fade-up">
+      <div class="cd-enable-card">
+        <div class="cd-enable-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </div>
+        <p>Faster identification of high-value operational problems</p>
+      </div>
+      <div class="cd-enable-card">
+        <div class="cd-enable-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <p>Strong alignment with existing market demand</p>
+      </div>
+      <div class="cd-enable-card">
+        <div class="cd-enable-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
+        <p>Continuous improvement driven by live deployment feedback</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How Aperture AIoT Works -->
+<section class="q-home-section q-home-section-gradient">
+  <div class="q-home-container">
+    <div class="q-home-fade-up" style="text-align:center; max-width:650px; margin:0 auto;">
+      <span class="q-home-label q-home-label-light"><span class="q-home-label-dot"></span>The Process</span>
+      <h2 class="q-home-title q-home-title-gradient">How Aperture AIoT Works</h2>
+      <p class="q-home-subtitle q-home-subtitle-light" style="margin:0 auto;">A structured pipeline connects physical systems to Systems creation.</p>
+    </div>
+    <div class="q-home-how-pipeline q-home-fade-up">
+      <!-- Step 1 -->
+      <div class="cd-pipeline-card">
+        <div class="cd-pipeline-step">1</div>
+        <h3>Data Capture Layer (IoT)</h3>
+        <p>Sensors, RFID systems, and connected infrastructure collect real-time data from physical environments.</p>
+        <ul class="cd-pipeline-list">
+          <li>Asset movement and utilization</li>
+          <li>Inventory levels and workflow progression</li>
+          <li>Personnel location and activity</li>
+          <li>Environmental and operational conditions</li>
+        </ul>
+        <div class="cd-pipeline-footer">This layer creates a continuous stream of operational data.</div>
+      </div>
+      <!-- Step 2 -->
+      <div class="cd-pipeline-card">
+        <div class="cd-pipeline-step">2</div>
+        <h3>Intelligence Layer (AI)</h3>
+        <p>Machine learning models analyze and interpret collected data.</p>
+        <ul class="cd-pipeline-list">
+          <li>Pattern recognition across workflows and systems</li>
+          <li>Detection of inefficiencies and anomalies</li>
+          <li>Prediction of operational risks and outcomes</li>
+          <li>Generation of actionable insights</li>
+        </ul>
+        <div class="cd-pipeline-footer">Raw data becomes structured intelligence that supports decision-making.</div>
+      </div>
+      <!-- Step 3 -->
+      <div class="cd-pipeline-card">
+        <div class="cd-pipeline-step">3</div>
+        <h3>Systems Creation Layer</h3>
+        <p>Insights are translated into focused companies built around repeatable problem patterns.</p>
+        <ul class="cd-pipeline-list">
+          <li>Each Systems targets a specific operational challenge</li>
+          <li>Solutions are based on validated demand and real data</li>
+          <li>Companies are structured for scalability and independence</li>
+        </ul>
+        <div class="cd-pipeline-footer">This creates a direct pipeline from data to company formation.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why This Approach Works -->
+<section class="q-home-section q-home-section-dark">
+  <div class="q-home-container">
+    <div class="q-home-fade-up">
+      <div class="q-home-why-box">
+        <span class="q-home-label q-home-label-light" style="justify-content:center;"><span class="q-home-label-dot"></span>Why It Works</span>
+        <h2 class="q-home-title q-home-title-white" style="font-size:clamp(24px,4vw,36px); margin-bottom:24px;">Why This Approach Works</h2>
+        <p>Traditional startups often rely on assumptions about market needs. Aperture AIoT is grounded in observed problems and proven demand.</p>
+        <p>This reduces risk and increases the probability of building solutions that deliver measurable value.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Platform Capabilities -->
+<section class="q-home-section q-home-section-gray">
+  <div class="q-home-container">
+    <div class="q-home-fade-up" style="text-align:center; max-width:650px; margin:0 auto;">
+      <span class="q-home-label"><span class="q-home-label-dot"></span>Platform</span>
+      <h2 class="q-home-title">Platform Capabilities</h2>
+      <p class="q-home-subtitle" style="margin:0 auto;">The Aperture AIoT Platform consist of modular systems that capture and analyze different aspects of physical operations.</p>
+    </div>
+    <a href="#" class="q-home-btn q-home-btn-dark" style="display:table; margin:24px auto 0;">Explore Aperture AIoT Core Platform</a>
+    <div class="q-home-platform-grid q-home-fade-up">
+      <div class="cd-platform-card">
+        <div class="cd-platform-card-icon cd-platform-card-icon-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div>
+          <h3>Asset Tracking and Visibility</h3>
+          <p>Track location, status, and utilization of assets across workflows</p>
+        </div>
+      </div>
+      <div class="cd-platform-card">
+        <div class="cd-platform-card-icon cd-platform-card-icon-cyan">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7h-9M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></svg>
+        </div>
+        <div>
+          <h3>Inventory and Operations Optimization</h3>
+          <p>Monitor inventory and optimize processes using real-time data</p>
+        </div>
+      </div>
+      <div class="cd-platform-card">
+        <div class="cd-platform-card-icon cd-platform-card-icon-violet">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <div>
+          <h3>People Tracking and Safety Systems</h3>
+          <p>Understand workforce movement and improve safety monitoring</p>
+        </div>
+      </div>
+      <div class="cd-platform-card">
+        <div class="cd-platform-card-icon cd-platform-card-icon-green">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        </div>
+        <div>
+          <h3>Access Control and Security</h3>
+          <p>Manage access using context-aware intelligence</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Integrated System Intelligence -->
+    <div class="q-home-integrated-box q-home-fade-up">
+      <h3>Integrated System Intelligence</h3>
+      <p style="color: var(--ap-gray-400); margin-bottom: 24px; font-size: 15px;">Each module captures a different dimension of operations. Combined, they provide a unified view of how systems function.</p>
+      <ul class="q-home-integrated-list">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          Cross-system visibility into workflows and dependencies
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          Identification of patterns across multiple operational domains
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          Improved prediction accuracy and decision support
+        </li>
+      </ul>
+      <p class="q-home-integrated-note">The modular architecture allows flexible deployment while enabling long-term scalability.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Systems Portfolio -->
+<section class="q-home-section q-home-section-gradient">
+  <div class="q-home-container">
+    <div class="q-home-fade-up" style="text-align:center; max-width:650px; margin:0 auto;">
+      <span class="q-home-label q-home-label-light"><span class="q-home-label-dot"></span>Portfolio</span>
+      <h2 class="q-home-title q-home-title-white">Systems Portfolio</h2>
+      <p class="q-home-subtitle q-home-subtitle-light" style="margin:0 auto;">Aperture AIoT transforms operational insights into focused, scalable Systems.</p>
+    </div>
+    <div style="text-align:center; margin-top:20px;">
+      <span class="q-home-label q-home-label-light">Featured Systems</span>
+    </div>
+    <a href="#" class="q-home-btn q-home-btn-outline" style="display:table; margin:12px auto 0;">Explore AIoT Systems Portfolio</a>
+    <div class="q-home-systems-grid q-home-fade-up">
+      <!-- Sentra AI -->
+      <div class="cd-system-card cd-system-card-blue">
+        <h3>Sentra AI</h3>
+        <div class="cd-system-card-sub">Workforce safety and access intelligence</div>
+        <ul class="cd-system-card-features">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            Real-time tracking and risk detection
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            Context-aware access and compliance monitoring
+          </li>
+        </ul>
+      </div>
+      <!-- CryoTrace AI -->
+      <div class="cd-system-card cd-system-card-cyan">
+        <h3>CryoTrace AI</h3>
+        <div class="cd-system-card-sub">Cold chain monitoring and traceability</div>
+        <ul class="cd-system-card-features">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            Environmental tracking across supply chains
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            Detection of anomalies and predictive risk alerts
+          </li>
+        </ul>
+      </div>
+      <!-- FlowCore AI -->
+      <div class="cd-system-card cd-system-card-violet">
+        <h3>FlowCore AI</h3>
+        <div class="cd-system-card-sub">Manufacturing intelligence and workflow optimization</div>
+        <ul class="cd-system-card-features">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            Visibility into asset and process interactions
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            Identification of inefficiencies and throughput improvement
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Systems Development Model -->
+    <div class="q-home-devmodel q-home-fade-up">
+      <h3>Systems Development Model</h3>
+      <p>Each Systems is derived from:</p>
+      <ul class="q-home-devmodel-list">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          Real-world deployments
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          Repeatable operational problem patterns
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          Clear and ongoing demand signals
+        </li>
+      </ul>
+      <p class="q-home-devmodel-note">This ensures strong alignment between product development and market needs.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Industries Served -->
+<section class="q-home-section">
+  <div class="q-home-container">
+    <div class="q-home-fade-up" style="text-align:center; max-width:700px; margin:0 auto;">
+      <span class="q-home-label"><span class="q-home-label-dot"></span>Industries</span>
+      <h2 class="q-home-title">Industries Served</h2>
+      <p class="q-home-subtitle" style="margin:0 auto;">Aperture AIoT applies its Platform across industries where physical operations generate complex and valuable data.</p>
+    </div>
+    <div class="q-home-industries-grid q-home-fade-up">
+      <div class="cd-industry-card">
+        <div class="cd-industry-card-icon cd-platform-card-icon-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M5 20V10l7-6 7 6v10"/><rect x="9" y="14" width="6" height="6"/></svg>
+        </div>
+        <h3>Manufacturing</h3>
+        <ul class="cd-industry-card-list">
+          <li>Optimize production workflows</li>
+          <li>Improve asset utilization</li>
+          <li>Reduce downtime</li>
+        </ul>
+      </div>
+      <div class="cd-industry-card">
+        <div class="cd-industry-card-icon cd-platform-card-icon-cyan">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <h3>Healthcare</h3>
+        <ul class="cd-industry-card-list">
+          <li>Track critical assets and specimens</li>
+          <li>Improve compliance and safety</li>
+          <li>Enhance operational visibility</li>
+        </ul>
+      </div>
+      <div class="cd-industry-card">
+        <div class="cd-industry-card-icon cd-platform-card-icon-violet">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 5 20 16 16 13 16 8"/></svg>
+        </div>
+        <h3>Logistics</h3>
+        <ul class="cd-industry-card-list">
+          <li>Monitor supply chain conditions</li>
+          <li>Track shipments and inventory</li>
+          <li>Improve coordination across networks</li>
+        </ul>
+      </div>
+      <div class="cd-industry-card">
+        <div class="cd-industry-card-icon cd-platform-card-icon-green">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 12h.01"/><path d="M17 12h.01"/><path d="M7 12h.01"/></svg>
+        </div>
+        <h3>Construction</h3>
+        <ul class="cd-industry-card-list">
+          <li>Track equipment and personnel</li>
+          <li>Enhance safety compliance</li>
+          <li>Monitor project execution</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Cross-Industry Intelligence -->
+    <div class="q-home-cross-industry q-home-fade-up">
+      <h3>Cross-Industry Intelligence</h3>
+      <p>Data collected across industries reveals patterns not visible within a single domain.</p>
+      <ul class="q-home-cross-list">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          Transfer of solutions across sectors
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          Identification of shared operational challenges
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          Development of scalable systems across use cases
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- U.S. and Canadian Standards -->
+<section class="q-home-section q-home-section-dark">
+  <div class="q-home-container">
+    <div class="q-home-fade-up" style="text-align:center; max-width:650px; margin:0 auto;">
+      <span class="q-home-label q-home-label-light"><span class="q-home-label-dot"></span>Compliance</span>
+      <h2 class="q-home-title q-home-title-white" style="font-size:clamp(24px,4vw,36px);">U.S. and Canadian Standards and Regulations</h2>
+    </div>
+    <div class="q-home-standards-grid q-home-fade-up">
+      <div class="cd-standard-tag">OSHA 29 CFR 1910</div>
+      <div class="cd-standard-tag">OSHA 29 CFR 1926</div>
+      <div class="cd-standard-tag">ANSI Z117.1</div>
+      <div class="cd-standard-tag">ANSI/ISA-95</div>
+      <div class="cd-standard-tag">ANSI/ISA-99 / IEC 62443</div>
+      <div class="cd-standard-tag">NIST Cybersecurity Framework</div>
+      <div class="cd-standard-tag">NIST SP 800-53</div>
+      <div class="cd-standard-tag">FDA 21 CFR Part 11</div>
+      <div class="cd-standard-tag">FDA 21 CFR Part 820</div>
+      <div class="cd-standard-tag">FSMA</div>
+      <div class="cd-standard-tag">CSA Z1000</div>
+      <div class="cd-standard-tag">HACCP</div>
+      <div class="cd-standard-tag">ISO 9001</div>
+      <div class="cd-standard-tag">ISO 14001</div>
+      <div class="cd-standard-tag">ISO 45001</div>
+      <div class="cd-standard-tag">ISO 22000</div>
+      <div class="cd-standard-tag">ISO/IEC 27001</div>
+      <div class="cd-standard-tag">ISO/IEC 27701</div>
+      <div class="cd-standard-tag">ISO 13485</div>
+      <div class="cd-standard-tag">ISO 28000</div>
+      <div class="cd-standard-tag">ISO 22301</div>
+      <div class="cd-standard-tag">CSA C22.1</div>
+      <div class="cd-standard-tag">UL 2900 Series</div>
+      <div class="cd-standard-tag">FCC Part 15</div>
+      <div class="cd-standard-tag">HIPAA</div>
+      <div class="cd-standard-tag">EPA Clean Air Act</div>
+      <div class="cd-standard-tag">EPA Clean Water Act</div>
+      <div class="cd-standard-tag">Transport Canada TDG Regulations</div>
+      <div class="cd-standard-tag">Canadian Environmental Protection Act (CEPA)</div>
+      <div class="cd-standard-tag">Canadian Centre for Occupational Health and Safety (CCOHS) Guidelines</div>
+      <div class="cd-standard-tag">PIPEDA</div>
+    </div>
+  </div>
+</section>
+
+<!-- Top Players in the Domain -->
+<section class="q-home-section">
+  <div class="q-home-container">
+    <div class="q-home-fade-up" style="text-align:center; max-width:600px; margin:0 auto;">
+      <span class="q-home-label"><span class="q-home-label-dot"></span>Market</span>
+      <h2 class="q-home-title">Top Players in the Domain</h2>
+    </div>
+    <div class="q-home-players-grid q-home-fade-up">
+      <div class="cd-player-tag">Manufacturing enterprises</div>
+      <div class="cd-player-tag">Automotive and aerospace manufacturers</div>
+      <div class="cd-player-tag">Healthcare systems and hospitals</div>
+      <div class="cd-player-tag">Pharmaceutical and biotechnology companies</div>
+      <div class="cd-player-tag">Logistics and supply chain operators</div>
+      <div class="cd-player-tag">NIST Cybersecurity Framework</div>
+      <div class="cd-player-tag">Warehouse and distribution centers</div>
+      <div class="cd-player-tag">Food and beverage producers</div>
+      <div class="cd-player-tag">Cold chain logistics providers</div>
+      <div class="cd-player-tag">Construction and infrastructure firms</div>
+      <div class="cd-player-tag">Energy and utilities operators</div>
+      <div class="cd-player-tag">Mining and industrial operators</div>
+      <div class="cd-player-tag">Government and public sector agencies</div>
+      <div class="cd-player-tag">Smart facility and building operators</div>
+      <div class="cd-player-tag">Research laboratories and testing facilities</div>
+    </div>
+  </div>
+</section>
+
+<!-- Case Studies -->
+<section class="q-home-section q-home-section-gradient">
+  <div class="q-home-container">
+    <div class="q-home-fade-up" style="text-align:center; max-width:600px; margin:0 auto;">
+      <span class="q-home-label q-home-label-light"><span class="q-home-label-dot"></span>Case Studies</span>
+      <h2 class="q-home-title q-home-title-white">Case Studies</h2>
+    </div>
+    <div class="q-home-cases-section q-home-fade-up">
+      <div class="q-home-cases-column">
+        <h3><span class="q-flag">🇺🇸</span> United States Case Studies</h3>
+        <div class="cd-case-item">Manufacturing Workflow Optimization in Detroit, Michigan</div>
+        <div class="cd-case-item">Workforce Safety Enhancement in Houston, Texas</div>
+        <div class="cd-case-item">Cold Chain Monitoring in Chicago, Illinois</div>
+        <div class="cd-case-item">Asset Tracking in Los Angeles, California</div>
+        <div class="cd-case-item">Access Control in New York City, New York</div>
+        <div class="cd-case-item">Warehouse Optimization in Atlanta, Georgia</div>
+        <div class="cd-case-item">Healthcare Asset Visibility in Boston, Massachusetts</div>
+        <div class="cd-case-item">Construction Site Safety in Denver, Colorado</div>
+        <div class="cd-case-item">Food Processing Compliance in Minneapolis, Minnesota</div>
+        <div class="cd-case-item">Smart Parking in San Francisco, California</div>
+        <div class="cd-case-item">Supply Chain Traceability in Dallas, Texas</div>
+        <div class="cd-case-item">Energy Facility Monitoring in Phoenix, Arizona</div>
+      </div>
+      <div class="q-home-cases-column">
+        <h3><span class="q-flag">🇨🇦</span> Canadian Case Studies</h3>
+        <div class="cd-case-item">Manufacturing Efficiency in Toronto, Ontario</div>
+        <div class="cd-case-item">Workforce Safety in Calgary, Alberta</div>
+        <div class="cd-case-item">Cold Chain Integrity in Vancouver, British Columbia</div>
+        <div class="cd-case-item">Logistics Asset Tracking in Montreal, Quebec</div>
+        <div class="cd-case-item">Facility Monitoring in Ottawa, Ontario</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="q-home-cta-section">
+  <div class="q-home-cta-bg"></div>
+  <div class="q-home-cta-content q-home-fade-up">
+    <span class="q-home-label q-home-label-light" style="justify-content:center;"><span class="q-home-label-dot"></span>Get Involved</span>
+    <h2 class="q-home-cta-title">Build the Next Generation of Industrial AI Companies</h2>
+    <p class="q-home-cta-desc">Aperture AIoT is creating a pipeline of Systems based on real-world data and validated demand. Investors, partners, and operators can participate in building and scaling these companies.</p>
+    <div class="q-home-cta-actions">
+      <div class="q-home-cta-tag">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        Invest in emerging Systems
+      </div>
+      <div class="q-home-cta-tag">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        Partner on deployments and applications
+      </div>
+      <div class="q-home-cta-tag">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Join as a Co-Founder
+      </div>
+    </div>
+    <p class="q-home-cta-note">Have an idea, partnership opportunity, or investment interest? Reach out through our Contact Us page to start the conversation and explore how you can be part of building the next generation of industrial AI Systems.</p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="q-home-footer">
+  <div class="q-home-footer-grid">
+    <div class="q-home-footer-brand">
+      <h3>Aperture</h3>
+      <p>Aperture AIoT operates at the intersection of physical systems and artificial intelligence. The platforms capture data from real environments, convert that data into structured intelligence, and use it to build focused, scalable companies that solve clearly defined operational problems.</p>
+    </div>
+    <div class="q-home-footer-col">
+      <h4>Useful Links</h4>
+      <ul>
+        <li><a href="#">AIoT Systems</a></li>
+        <li><a href="#">AIoT Core Platforms</a></li>
+      </ul>
+    </div>
+    <div class="q-home-footer-col">
+      <h4>Links</h4>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">About us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="q-home-footer-bottom">
+    Copyright © Aperture AIoT
+  </div>
+</footer>
+
+<script>
+(function() {
+  // Navbar scroll effect
+  var nav = document.querySelector('.q-home-nav');
+  if (nav) {
+    window.addEventListener('scroll', function() {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+  }
+
+  // Mobile menu toggle
+  var toggle = document.querySelector('.q-home-mobile-toggle');
+  var links = document.querySelector('.q-home-nav-links');
+  if (toggle && links) {
+    toggle.addEventListener('click', function() {
+      links.classList.toggle('active');
+      var spans = toggle.querySelectorAll('span');
+      if (links.classList.contains('active')) {
+        spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+        spans[1].style.opacity = '0';
+        spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+      } else {
+        spans[0].style.transform = '';
+        spans[1].style.opacity = '';
+        spans[2].style.transform = '';
+      }
+    });
+  }
+
+  // Scroll fade-in animations
+  var fadeEls = document.querySelectorAll('.q-home-fade-up');
+  if (fadeEls.length && 'IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    fadeEls.forEach(function(el) { observer.observe(el); });
+  }
+})();
+</script>
+
+</body>
+</html>
