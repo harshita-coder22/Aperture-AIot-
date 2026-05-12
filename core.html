@@ -1123,8 +1123,271 @@ body {
   color: var(--q-text-muted);
 }
 
+/* ======================== HEADER ======================== */
+.q-aiot-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 0 24px;
+  transition: background 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
+}
+
+.q-aiot-header.q-aiot-header--scrolled {
+  background: rgba(10, 22, 40, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 1px 0 var(--q-border), 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.q-aiot-header__inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  transition: height 0.4s ease;
+}
+
+.q-aiot-header--scrolled .q-aiot-header__inner {
+  height: 64px;
+}
+
+.q-aiot-header__brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.q-aiot-header__logo {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--q-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--q-transition);
+}
+
+.q-aiot-header__logo svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--q-white);
+}
+
+.q-aiot-header__brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.q-aiot-header__brand-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--q-white);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.q-aiot-header__brand-tag {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--q-accent-light);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+.q-aiot-header__nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.q-aiot-header__nav-link {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--q-text-muted);
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: var(--q-transition);
+  white-space: nowrap;
+}
+
+.q-aiot-header__nav-link:hover {
+  color: var(--q-white);
+  background: rgba(59, 130, 246, 0.08);
+}
+
+.q-aiot-header__nav-link--active {
+  color: var(--q-white);
+}
+
+.q-aiot-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.q-aiot-header__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--q-white);
+  background: var(--q-gradient);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: var(--q-transition);
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  box-shadow: 0 2px 12px rgba(59, 130, 246, 0.25);
+}
+
+.q-aiot-header__cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+}
+
+.q-aiot-header__toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--q-border);
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition: var(--q-transition);
+}
+
+.q-aiot-header__toggle:hover {
+  background: rgba(59, 130, 246, 0.08);
+  border-color: rgba(59, 130, 246, 0.25);
+}
+
+.q-aiot-header__toggle-line {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--q-white);
+  border-radius: 2px;
+  transition: var(--q-transition);
+  position: relative;
+}
+
+.q-aiot-header__toggle-line::before,
+.q-aiot-header__toggle-line::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--q-white);
+  border-radius: 2px;
+  transition: var(--q-transition);
+}
+
+.q-aiot-header__toggle-line::before { top: -6px; }
+.q-aiot-header__toggle-line::after { top: 6px; }
+
+.q-aiot-header__toggle.q-aiot-active .q-aiot-header__toggle-line {
+  background: transparent;
+}
+
+.q-aiot-header__toggle.q-aiot-active .q-aiot-header__toggle-line::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.q-aiot-header__toggle.q-aiot-active .q-aiot-header__toggle-line::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+/* Mobile Menu Overlay */
+.q-aiot-header__mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 22, 40, 0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 999;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.q-aiot-header__mobile-menu.q-aiot-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.q-aiot-header__mobile-link {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--q-text-muted);
+  text-decoration: none;
+  padding: 14px 32px;
+  border-radius: 12px;
+  transition: var(--q-transition);
+  text-align: center;
+}
+
+.q-aiot-header__mobile-link:hover {
+  color: var(--q-white);
+  background: rgba(59, 130, 246, 0.08);
+}
+
+.q-aiot-header__mobile-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  padding: 14px 36px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--q-white);
+  background: var(--q-gradient);
+  border-radius: 10px;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+  transition: var(--q-transition);
+}
+
+.q-aiot-header__mobile-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.45);
+}
+
 /* ======================== RESPONSIVE ======================== */
 @media (max-width: 1024px) {
+  .q-aiot-header__nav { display: none; }
+  .q-aiot-header__cta { display: none; }
+  .q-aiot-header__toggle { display: flex; }
+  .q-aiot-header__mobile-menu { display: flex; }
+
   .q-aiot-intro__grid,
   .q-aiot-data__grid,
   .q-aiot-ai-foundation__inner { grid-template-columns: 1fr; gap: 48px; }
@@ -1172,6 +1435,44 @@ body {
   transform: translateY(0);
 }
 </style>
+
+<!-- ==================== HEADER ==================== -->
+<header class="q-aiot-header">
+  <div class="q-aiot-header__inner">
+    <a href="#" class="q-aiot-header__brand">
+      <div class="q-aiot-header__logo">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <div class="q-aiot-header__brand-text">
+        <span class="q-aiot-header__brand-name">Aperture</span>
+        <span class="q-aiot-header__brand-tag">AIoT Platform</span>
+      </div>
+    </a>
+    <nav class="q-aiot-header__nav">
+      <a href="#" class="q-aiot-header__nav-link q-aiot-header__nav-link--active">Home</a>
+      <a href="#" class="q-aiot-header__nav-link">AIoT Systems</a>
+      <a href="#" class="q-aiot-header__nav-link">AIoT Core Platforms</a>
+      <a href="#" class="q-aiot-header__nav-link">About us</a>
+      <a href="#" class="q-aiot-header__nav-link">Contact Us</a>
+    </nav>
+    <div class="q-aiot-header__actions">
+      <a href="#" class="q-aiot-header__cta">Inquire Now</a>
+      <button class="q-aiot-header__toggle" aria-label="Toggle menu">
+        <span class="q-aiot-header__toggle-line"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Menu Overlay -->
+<div class="q-aiot-header__mobile-menu">
+  <a href="#" class="q-aiot-header__mobile-link">Home</a>
+  <a href="#" class="q-aiot-header__mobile-link">AIoT Systems</a>
+  <a href="#" class="q-aiot-header__mobile-link">AIoT Core Platforms</a>
+  <a href="#" class="q-aiot-header__mobile-link">About us</a>
+  <a href="#" class="q-aiot-header__mobile-link">Contact Us</a>
+  <a href="#" class="q-aiot-header__mobile-cta">Inquire Now</a>
+</div>
 
 <!-- ==================== HERO ==================== -->
 <section class="q-aiot-hero">
@@ -1938,19 +2239,57 @@ body {
 
 <script>
 (function() {
+  /* Scroll Animations */
   var fadeEls = document.querySelectorAll('.q-aiot-fade-in');
-  if (!fadeEls.length) return;
+  if (fadeEls.length) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('q-aiot-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    fadeEls.forEach(function(el) { observer.observe(el); });
+  }
 
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('q-aiot-visible');
-        observer.unobserve(entry.target);
+  /* Header Scroll Effect */
+  var header = document.querySelector('.q-aiot-header');
+  if (header) {
+    var lastScroll = 0;
+    function handleHeaderScroll() {
+      var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+      if (scrollY > 40) {
+        header.classList.add('q-aiot-header--scrolled');
+      } else {
+        header.classList.remove('q-aiot-header--scrolled');
       }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      lastScroll = scrollY;
+    }
+    window.addEventListener('scroll', handleHeaderScroll, { passive: true });
+    handleHeaderScroll();
+  }
 
-  fadeEls.forEach(function(el) { observer.observe(el); });
+  /* Mobile Menu Toggle */
+  var toggle = document.querySelector('.q-aiot-header__toggle');
+  var mobileMenu = document.querySelector('.q-aiot-header__mobile-menu');
+  if (toggle && mobileMenu) {
+    toggle.addEventListener('click', function() {
+      var isActive = toggle.classList.contains('q-aiot-active');
+      toggle.classList.toggle('q-aiot-active');
+      mobileMenu.classList.toggle('q-aiot-active');
+      document.body.style.overflow = isActive ? '' : 'hidden';
+    });
+
+    var mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(function(link) {
+      link.addEventListener('click', function() {
+        toggle.classList.remove('q-aiot-active');
+        mobileMenu.classList.remove('q-aiot-active');
+        document.body.style.overflow = '';
+      });
+    });
+  }
 })();
 </script>
 
